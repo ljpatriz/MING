@@ -8,6 +8,15 @@ import javafx.scene.control.TextArea;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
 
+//// TODO: 4/25/2017 fix resizing of window so that the text area resizes and console doesnt
+//// TODO: 4/25/2017 allow user resizing of components
+//// TODO: 4/25/2017 stop using silly fonts this is a professional application
+//// TODO: 4/25/2017 use fxml for layout stuff
+//// TODO: 4/25/2017 have option for user to view registers in base 10
+//// TODO: 4/25/2017 consider a (still bland but slightly) less bland color scheme
+//// TODO: 4/25/2017 menu bar -> file -> save, open, quit
+//// TODO: 4/25/2017 finish the application instead of writing so many todos
+
 public class View {
 
     private GridPane registers;
