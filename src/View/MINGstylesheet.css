@@ -1,0 +1,14 @@
+#font-button {
+    -fx-font: bold italic 20pt "Arial";
+    -fx-effect: dropshadow( one-pass-box , black , 8 , 0.0 , 2 , 0 );
+}
+
+.grid {
+    -fx-background-color: White;
+    -fx-background-radius: 5.0;
+    -fx-background-insets: 0.0 5.0 0.0 5.0;
+    -fx-border-style: solid inside;
+    -fx-padding: 10;
+    -fx-hgap: 5;
+    -fx-vgap: 2;
+}
