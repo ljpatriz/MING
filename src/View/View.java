@@ -1,49 +1,52 @@
 package View;
 
-import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.layout.*;
-import javafx.scene.shape.Box;
 import javafx.stage.Stage;
-
-import java.awt.*;
 
 public class View {
 
-    GridPane registers;
-    int currentRegisterNumber; //Only used for initializing registers
+    private GridPane registers;
+    private int currentRegisterNumber; //Only used for initializing registers
 
     public void start(Stage primaryStage) throws Exception{
         primaryStage.setTitle("MING");
         TextArea textArea = new TextArea();
-        textArea.setPrefSize(500,500);
+        textArea.setPrefSize(700,500);
+
 
         Button button = new Button("Click to print text");
         button.setOnAction(action-> {
             System.out.println(textArea.getText());
         });
 
-        setupUpRegisterPane();
+        TextArea printArea = new TextArea();
+        printArea.setDisable(true);
+        printArea.setPrefSize(500,200);
+
+        //properly initialize the registers
+        initializeRegisterPane();
 
         GridPane gridPane = new GridPane();
-        gridPane.setPadding(new Insets(25,25,10,25));
-        gridPane.setHgap(50);
 
 
         gridPane.add(textArea,0,0);
         gridPane.add(this.registers,1,0);
+        gridPane.add(printArea,0,2);
+
+
         gridPane.add(button,0,1);
-        Scene scene = new Scene(gridPane, 1000, 750);
+        Scene scene = new Scene(gridPane, 1200, 1000);
 
         //apply CSS Styling
         scene.getStylesheets().add(View.class.getResource("MINGstylesheet.css").toExternalForm());
         button.setId("font-button");
         this.registers.getStyleClass().add("grid");
+        gridPane.getStyleClass().add("grid");
 
 
         primaryStage.setScene(scene);
@@ -54,7 +57,7 @@ public class View {
 
 
 
-    private void setupUpRegisterPane(){
+    private void initializeRegisterPane(){
         this.registers = new GridPane();
 
         //headers
