@@ -1,12 +1,16 @@
 package View;
 
-import javafx.geometry.Insets;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextArea;
+import javafx.scene.control.*;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+
+import java.io.*;
+import java.util.Scanner;
 
 //// TODO: 4/25/2017 fix resizing of window so that the text area resizes and console doesnt
 //// TODO: 4/25/2017 allow user resizing of components
@@ -21,50 +25,98 @@ public class View {
 
     private GridPane registers;
     private int currentRegisterNumber; //Only used for initializing registers
+    private MenuBar menuBar;
+    private GridPane masterGridPane;
+    private TextArea textArea;
+    private TextArea printArea;
+    private Scene scene;
+    private Stage primaryStage;
 
     public void start(Stage primaryStage) throws Exception{
-        primaryStage.setTitle("MING");
-        TextArea textArea = new TextArea();
-        textArea.setPrefSize(700,500);
-
-
-        Button button = new Button("Click to print text");
-        button.setOnAction(action-> {
-            System.out.println(textArea.getText());
-        });
-
-        TextArea printArea = new TextArea();
-        printArea.setDisable(true);
-        printArea.setPrefSize(500,200);
-
-        //properly initialize the registers
+        this.primaryStage = primaryStage;
+        this.primaryStage.setTitle("MING");
+        initializeMenuBar();
+        initializeTextAreas();
         initializeRegisterPane();
-
-        GridPane gridPane = new GridPane();
-
-
-        gridPane.add(textArea,0,0);
-        gridPane.add(this.registers,1,0);
-        gridPane.add(printArea,0,2);
-
-
-        gridPane.add(button,0,1);
-        Scene scene = new Scene(gridPane, 1200, 1000);
-
-        //apply CSS Styling
-        scene.getStylesheets().add(View.class.getResource("MINGstylesheet.css").toExternalForm());
-        button.setId("font-button");
-        this.registers.getStyleClass().add("grid");
-        gridPane.getStyleClass().add("grid");
-
-
-        primaryStage.setScene(scene);
-
-
+        organizeUIPane();
+        primaryStage.setScene(this.scene);
         primaryStage.show();
     }
 
+    private void organizeUIPane(){
+        this.masterGridPane = new GridPane();
+        this.masterGridPane.add(textArea,0,0);
+        this.masterGridPane.add(this.registers,1,0);
+        this.masterGridPane.add(this.printArea,0,2);
+        this.scene = new Scene(new VBox(), 1200, 1000);
+        ((VBox) this.scene.getRoot()).getChildren().addAll(this.menuBar,this.masterGridPane);
+        //apply CSS Styling
+        this.scene.getStylesheets().add(View.class.getResource("MINGstylesheet.css").toExternalForm());
+        this.registers.getStyleClass().add("grid");
+        this.masterGridPane.getStyleClass().add("grid");
+    }
 
+    private void initializeTextAreas(){
+        this.textArea = new TextArea();
+        this.textArea.setPrefSize(700,500);
+        this.printArea = new TextArea();
+        this.printArea.setDisable(true);
+        this.printArea.setPrefSize(500,200);
+    }
+
+    private void initializeMenuBar(){
+        this.menuBar = new MenuBar();
+
+        //----Menu File----
+        Menu menuFile = new Menu("File");
+        //save
+        MenuItem save = new MenuItem("Save");
+        save.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                System.out.println("Save");
+                handleSave();
+            }
+        });
+        //load
+        MenuItem load = new MenuItem("Load");
+        load.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                System.out.println("Load");
+                handleLoad();
+            }
+        });
+        menuFile.getItems().addAll(save,load);
+
+        //----Run Program----
+        Menu menuRun = new Menu();
+        Label menuRunLabel = new Label("Run");
+        menuRunLabel.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                System.out.println("Run");
+                //run code
+            }
+        });
+        menuRun.setGraphic(menuRunLabel);
+
+        //----Quit----
+        Menu menuQuit = new Menu();
+        Label menuQuitLabel = new Label("Quit");
+        menuQuitLabel.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                System.out.println("Quit");
+                System.exit(0);
+            }
+        });
+        menuQuit.setGraphic(menuQuitLabel);
+
+
+        //add menus to menuBar
+        this.menuBar.getMenus().addAll(menuFile,menuRun,menuQuit);
+    }
 
     private void initializeRegisterPane(){
         this.registers = new GridPane();
@@ -122,5 +174,44 @@ public class View {
         registers.add(new Label("0x00000000"),2,this.currentRegisterNumber);
     }
 
+    private void handleSave(){
+        FileChooser fileChooser = new FileChooser();
+
+        //Set extension filter
+        FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("TXT files (*.txt)", "*.txt");
+        fileChooser.getExtensionFilters().add(extFilter);
+
+        //Show save file dialog
+        File file = fileChooser.showSaveDialog(this.primaryStage);
+        if(file!=null){
+            try { //Save file
+                FileWriter fileWriter = null;
+                fileWriter = new FileWriter(file);
+                fileWriter.write(this.textArea.getText());
+                fileWriter.close();
+            } catch (IOException ex) {
+                System.out.println("IOException Error");
+            }
+        }
+    }
+
+    private void handleLoad(){
+        FileChooser fileChooser = new FileChooser();
+
+        //Set extension filter
+        FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("TXT files (*.txt)", "*.txt");
+        fileChooser.getExtensionFilters().add(extFilter);
+
+        //Show save file dialog
+        File file = fileChooser.showOpenDialog(this.primaryStage);
+        if(file!=null){
+            try { //Save file
+                String content = new Scanner(file).useDelimiter("\\Z").next();
+                this.textArea.setText(content);
+            } catch (IOException ex) {
+                System.out.println("IOException Error");
+            }
+        }
+    }
 
 }
