@@ -1,4 +1,6 @@
-package model;
+package model.commands;
+
+import model.Core;
 
 import java.util.function.Consumer;
 
@@ -7,10 +9,13 @@ import java.util.function.Consumer;
  */
 public abstract class Command {
 
+    private Core core;
+
     private Consumer<String> function;
     private String arguments;
 
-    Command(String arguments) {
+    Command(String arguments, Core core) {
+        this.core = core;
         this.arguments = arguments;
     }
 

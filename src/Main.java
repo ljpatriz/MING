@@ -1,4 +1,5 @@
-import View.View;
+import model.Core;
+import view.View;
 import javafx.application.Application;
 import javafx.stage.Stage;
 
@@ -8,6 +9,7 @@ public class Main extends Application {
     public void start(Stage primaryStage) throws Exception{
         View view = new View();
         view.start(primaryStage);
+        Core core = new Core();
     }
 
 

@@ -1,4 +1,4 @@
-package View;
+package view;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -96,6 +96,7 @@ public class View {
             public void handle(MouseEvent event) {
                 System.out.println("Run");
                 //run code
+                //ModelController.run()
             }
         });
         menuRun.setGraphic(menuRunLabel);
