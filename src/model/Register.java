@@ -15,6 +15,12 @@ public class Register {
         this.modifiable = modifiable;
     }
 
+    //// TODO: 4/25/2017 find a better way to do this
+    public void setModifiable(boolean value) {
+        this.modifiable = value;
+    }
+
+
     public void setValue(int value){
         this.value = value;
     }

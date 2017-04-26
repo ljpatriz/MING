@@ -13,11 +13,12 @@ public class MoveCommand extends Command{
         super(arguments, core);
 
         Consumer<String> function = s -> {
+            s.replaceAll(", "," ");
             String[] split = s.split(" ");
             String dest = split[0];
             String source = split[1];
 
-            core.getRegister(dest).set(core.getRegister(source).value());
+            core.getRegister(dest).setValue(core.getRegister(source).getValue());
         };
 
     }
