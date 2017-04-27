@@ -1,5 +1,7 @@
 import model.Core;
+import model.commands.LoadImmediateCommand;
 import model.commands.MoveCommand;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -14,13 +16,20 @@ public class CommandTest {
     }
 
     @Test
-    public void testMoveCommand1() throws Exception {
-
+    public void testMoveCommand() throws Exception {
         testCore.getRegister(3).setValue(5);
-        System.out.println(testCore.getRegister(3).getRegisterName() + "->" + testCore.getRegister(3).getValue());
         MoveCommand moveCommand = new MoveCommand("$v0 $v1",testCore);
         moveCommand.apply();
-        System.out.println(testCore.getRegister(2).getRegisterName()+ "->" +testCore.getRegister(2).getValue());
+        Assert.assertEquals(testCore.getRegister(2).getValue(),testCore.getRegister(3).getValue());
     }
+
+    @Test
+    public void testLoadImmediateCommand() throws Exception {
+        LoadImmediateCommand loadImmediateCommand = new LoadImmediateCommand("$v0 5",testCore);
+        loadImmediateCommand.apply();
+        Assert.assertEquals(testCore.getRegister(2).getValue(),5);
+    }
+
+
 
 }
