@@ -59,5 +59,13 @@ public class Core {
         return stack.get(sp);
     }
 
+    public int getMemoryVal(int loc){
+        return memory.get(loc);
+    }
+
+    public int setMemoryVal(int loc, int val){
+        return memory.set(loc, val);
+    }
+
 
 }
