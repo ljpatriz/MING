@@ -2,7 +2,7 @@ package model;
 
 import javafx.scene.layout.Region;
 import model.util.Util;
-
+import model.commands.Command;
 import java.util.*;
 
 /**
@@ -14,7 +14,8 @@ public class Core {
     private ArrayList<Integer> stack = new ArrayList<>();
     private List<Integer> memory = new ArrayList<>();
 
-
+    private List<Command> commandList = new ArrayList<>();
+    private int commandLocation;
     public Core(){
         populateRegisters();
     }
@@ -67,5 +68,7 @@ public class Core {
         return memory.set(loc, val);
     }
 
-
+    public void setCommandLocation(int location){
+        this.commandLocation = location;
+    }
 }
