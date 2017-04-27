@@ -10,6 +10,8 @@ import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
 import java.io.*;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 //// TODO: 4/25/2017 fix resizing of window so that the text area resizes and console doesnt
@@ -23,6 +25,7 @@ import java.util.Scanner;
 public class View {
 
     private GridPane registers;
+    private List<Label> registerLabels;
     private int currentRegisterNumber; //Only used for initializing registers
     private MenuBar menuBar;
     private GridPane masterGridPane;
@@ -34,6 +37,7 @@ public class View {
     public void start(Stage primaryStage) throws Exception{
         this.primaryStage = primaryStage;
         this.primaryStage.setTitle("MING");
+        this.registerLabels = new ArrayList<>();
         initializeMenuBar();
         initializeTextAreas();
         initializeRegisterPane();

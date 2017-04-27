@@ -21,8 +21,12 @@ public class Register {
     }
 
 
+    public String getRegisterName(){
+        return this.registerName;
+    }
     public void setValue(int value){
-        this.value = value;
+        if(modifiable)
+            this.value = value;
     }
 
     public int getValue(){

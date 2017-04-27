@@ -9,15 +9,14 @@ import java.util.function.Consumer;
  */
 public class MoveCommand extends Command{
 
-    MoveCommand(String arguments, Core core) {
+    public MoveCommand(String arguments, Core core) {
         super(arguments, core);
 
-        Consumer<String> function = s -> {
-            s.replaceAll(", "," ");
+        this.function = s -> {
+            s.replaceAll(", *"," ");
             String[] split = s.split(" ");
             String dest = split[0];
             String source = split[1];
-
             core.getRegister(dest).setValue(core.getRegister(source).getValue());
         };
 
