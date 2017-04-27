@@ -11,10 +11,10 @@ public abstract class Command {
 
     private Core core;
 
-    private Consumer<String> function;
+    protected Consumer<String> function;
     private String arguments;
 
-    Command(String arguments, Core core) {
+    public Command(String arguments, Core core) {
         this.core = core;
         this.arguments = arguments;
     }

@@ -7,17 +7,17 @@ import java.util.function.Consumer;
 /**
  * Created by larrypatrizio on 4/25/17.
  */
-public class MoveCommand extends Command{
+public class LoadImmediateCommand extends Command{
 
-    public MoveCommand(String arguments, Core core) {
+    public LoadImmediateCommand(String arguments, Core core) {
         super(arguments, core);
 
         this.function = s -> {
             s.replaceAll(", *"," ");
             String[] split = s.split(" ");
             String dest = split[0];
-            String source = split[1];
-            core.getRegister(dest).setValue(core.getRegister(source).getValue());
+            int value = Integer.parseInt(split[1]);
+            core.getRegister(dest).setValue(value);
         };
 
     }
