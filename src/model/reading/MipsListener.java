@@ -1,4 +1,7 @@
-package model.reading;// Generated from Mips.g4 by ANTLR 4.7
+// Generated from Mips.g4 by ANTLR 4.7
+
+package model.reading;
+
 import org.antlr.v4.runtime.tree.ParseTreeListener;
 
 /**

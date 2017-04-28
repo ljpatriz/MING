@@ -1,5 +1,9 @@
 grammar Mips;
 
+@header {
+package model.reading;
+}
+
 /*
  * Parser Rules
  */
@@ -104,9 +108,9 @@ XOR		: 'xor'		;
 XORI	: 'xori'	;
 ORI		: 'ori'		;
 
-SEP		: WS		; //(SPACE+ | COMMA SPACE+ | COMMA | TAB | NEWLINE)
-SPACE	: ' '		;
-COMMA	: ','		;
+//SEP		: WS		; //(SPACE+ | COMMA SPACE+ | COMMA | TAB | NEWLINE)
+//SPACE	: ' '		;
+//COMMA	: ','		;
 
 
 LABEL	: [.]+ ;
