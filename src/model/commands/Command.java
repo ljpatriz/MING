@@ -2,24 +2,21 @@ package model.commands;
 
 import model.Core;
 
-import java.util.function.Consumer;
+import java.util.function.Function;
 
 /**
  * Created by ncameron on 4/25/2017.
  */
 public abstract class Command {
 
-    private Core core;
+    protected Core core;
+    protected Function function;
 
-    protected Consumer<String> function;
-    private String arguments;
-
-    public Command(String arguments, Core core) {
+    public Command(Core core) {
         this.core = core;
-        this.arguments = arguments;
     }
 
     public void apply() {
-        function.accept(arguments);
+        function.apply(null);
     }
 }

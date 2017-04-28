@@ -16,6 +16,7 @@ public class Core {
 
     private List<Command> commandList = new ArrayList<>();
     private int commandLocation;
+    private Map<String, Integer> labelMap= new HashMap<>();
     public Core(){
         populateRegisters();
     }
@@ -66,6 +67,10 @@ public class Core {
 
     public int setMemoryVal(int loc, int val){
         return memory.set(loc, val);
+    }
+
+    public void setCommandLocation(String location){
+        this.commandLocation = labelMap.get(location);
     }
 
     public void setCommandLocation(int location){

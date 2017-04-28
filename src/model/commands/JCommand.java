@@ -1,12 +1,19 @@
 package model.commands;
 
 import model.Core;
+import model.Register;
 
 /**
  * Created by ncameron on 4/27/2017.
  */
 public class JCommand extends Command {
-    public JCommand(String arguments, Core core) {
-        super(arguments, core);
+    String target;
+    public JCommand(Core core,   String target) {
+        super(core);
+        this.target = target;
+    }
+
+    public void apply(){
+        core.setCommandLocation(target);
     }
 }

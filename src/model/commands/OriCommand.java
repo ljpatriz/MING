@@ -1,21 +1,23 @@
 package model.commands;
 
 import model.Core;
+import model.Register;
 
 /**
  * Created by ncameron on 4/27/2017.
  */
 public class OriCommand extends Command {
-    public OriCommand(String arguments, Core core) {
-        super(arguments, core);
-        this.function = s -> {
-            s.replaceAll(", "," ");
-            String[] split = s.split(" ");
-            String dest = split[0];
-            String src = split[1];
-            String immediate = split[2];
-            int val = Integer.valueOf(immediate);
-            core.getRegister(dest).setValue((core.getRegister(src).getValue()|val));
-        };
+    Register dest;
+    Register src;
+    int immediate;
+    public OriCommand(Core core, Register dest, Register src, int immediate) {
+        super(core);
+        this.dest = dest;
+        this.src = src;
+        this.immediate = immediate;
+    }
+
+    public void apply(){
+        dest.setValue(src.getValue() | immediate);
     }
 }

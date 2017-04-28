@@ -2,18 +2,20 @@ package model.commands;
 
 
 import model.Core;
+import model.Register;
 
 public class AddiCommand extends Command {
-    public AddiCommand(String arguments, Core core) {
-        super(arguments, core);
+    Register dest;
+    Register src;
+    int immediate;
+    public AddiCommand(Core core, Register dest, Register src, int immediate) {
+        super(core);
+        this.dest = dest;
+        this.src = src;
+        this.immediate = immediate;
+    }
 
-        this.function = s -> {
-            s.replaceAll(", "," ");
-            String[] split = s.split(" ");
-            String dest = split[0];
-            String src = split[1];
-            String immediate = split[2];
-            core.getRegister(dest).setValue(core.getRegister(src).getValue() + Integer.valueOf(immediate));
-        };
+    public void apply(){
+        dest.setValue(src.getValue() + immediate);
     }
 }

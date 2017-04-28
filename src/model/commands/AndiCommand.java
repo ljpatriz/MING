@@ -1,20 +1,24 @@
 package model.commands;
 
 import model.Core;
+import model.Register;
 
 /**
  * Created by ncameron on 4/27/2017.
  */
 public class AndiCommand extends Command {
-    public AndiCommand(String arguments, Core core) {
-        super(arguments, core);
-        this.function = s -> {
-            s.replaceAll(", "," ");
-            String[] split = s.split(" ");
-            String dest = split[0];
-            String src = split[1];
-            String immediate = split[2];
-            core.getRegister(dest).setValue(core.getRegister(src).getValue() + Integer.valueOf(immediate));
-        };
+    Register dest;
+    Register src;
+    int immediate;
+    public AndiCommand(Core core, Register dest, Register src, int immediate) {
+        super(core);
+        this.dest = dest;
+        this.src = src;
+        this.immediate = immediate;
     }
+
+    public void apply(){
+        dest.setValue(src.getValue() & immediate);
+    }
+
 }

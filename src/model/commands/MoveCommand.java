@@ -1,6 +1,7 @@
 package model.commands;
 
 import model.Core;
+import model.Register;
 
 import java.util.function.Consumer;
 
@@ -8,19 +9,15 @@ import java.util.function.Consumer;
  * Created by larrypatrizio on 4/25/17.
  */
 public class MoveCommand extends Command{
-
-    public MoveCommand(String arguments, Core core) {
-        super(arguments, core);
-
-        this.function = s -> {
-            s.replaceAll(", *"," ");
-            String[] split = s.split(" ");
-            String dest = split[0];
-            String source = split[1];
-            core.getRegister(dest).setValue(core.getRegister(source).getValue());
-        };
-
+    Register dest;
+    Register src;
+    public MoveCommand(Core core, Register dest, Register src) {
+        super(core);
+        this.dest = dest;
+        this.src = src;
     }
 
-
+    public void apply(){
+        dest.setValue(src.getValue());
+    }
 }

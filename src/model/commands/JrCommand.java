@@ -6,7 +6,14 @@ import model.Core;
  * Created by ncameron on 4/27/2017.
  */
 public class JrCommand extends Command {
-    public JrCommand(String arguments, Core core) {
-        super(arguments, core);
+    int addr;
+
+    public JrCommand(Core core, int addr) {
+        super(core);
+        this.addr = addr;
+    }
+
+    public void apply(){
+        core.setCommandLocation(addr);
     }
 }
