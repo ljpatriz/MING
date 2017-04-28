@@ -1,14 +1,15 @@
-package model.reading;
-// Generated from mipsgrammar.g4 by ANTLR 4.7
+package model.reading;// Generated from Mips.g4 by ANTLR 4.7
+import org.antlr.v4.runtime.Lexer;
+import org.antlr.v4.runtime.CharStream;
+import org.antlr.v4.runtime.Token;
+import org.antlr.v4.runtime.TokenStream;
 import org.antlr.v4.runtime.*;
-import org.antlr.v4.runtime.atn.ATN;
-import org.antlr.v4.runtime.atn.ATNDeserializer;
-import org.antlr.v4.runtime.atn.LexerATNSimulator;
-import org.antlr.v4.runtime.atn.PredictionContextCache;
+import org.antlr.v4.runtime.atn.*;
 import org.antlr.v4.runtime.dfa.DFA;
+import org.antlr.v4.runtime.misc.*;
 
 @SuppressWarnings({"all", "warnings", "unchecked", "unused", "cast"})
-public class mipsgrammarLexer extends Lexer {
+public class MipsLexer extends Lexer {
 	static { RuntimeMetaData.checkVersion("4.7", RuntimeMetaData.VERSION); }
 
 	protected static final DFA[] _decisionToDFA;
@@ -88,13 +89,13 @@ public class mipsgrammarLexer extends Lexer {
 	}
 
 
-	public mipsgrammarLexer(CharStream input) {
+	public MipsLexer(CharStream input) {
 		super(input);
 		_interp = new LexerATNSimulator(this,_ATN,_decisionToDFA,_sharedContextCache);
 	}
 
 	@Override
-	public String getGrammarFileName() { return "mipsgrammar.g4"; }
+	public String getGrammarFileName() { return "Mips.g4"; }
 
 	@Override
 	public String[] getRuleNames() { return ruleNames; }

@@ -1,6 +1,4 @@
-package model.reading;
-
-// Generated from mipsgrammar.g4 by ANTLR 4.7
+package model.reading;// Generated from Mips.g4 by ANTLR 4.7
 import org.antlr.v4.runtime.atn.*;
 import org.antlr.v4.runtime.dfa.DFA;
 import org.antlr.v4.runtime.*;
@@ -11,7 +9,7 @@ import java.util.Iterator;
 import java.util.ArrayList;
 
 @SuppressWarnings({"all", "warnings", "unchecked", "unused", "cast"})
-public class mipsgrammarParser extends Parser {
+public class MipsParser extends Parser {
 	static { RuntimeMetaData.checkVersion("4.7", RuntimeMetaData.VERSION); }
 
 	protected static final DFA[] _decisionToDFA;
@@ -92,7 +90,7 @@ public class mipsgrammarParser extends Parser {
 	}
 
 	@Override
-	public String getGrammarFileName() { return "mipsgrammar.g4"; }
+	public String getGrammarFileName() { return "Mips.g4"; }
 
 	@Override
 	public String[] getRuleNames() { return ruleNames; }
@@ -103,7 +101,7 @@ public class mipsgrammarParser extends Parser {
 	@Override
 	public ATN getATN() { return _ATN; }
 
-	public mipsgrammarParser(TokenStream input) {
+	public MipsParser(TokenStream input) {
 		super(input);
 		_interp = new ParserATNSimulator(this,_ATN,_decisionToDFA,_sharedContextCache);
 	}
@@ -120,11 +118,16 @@ public class mipsgrammarParser extends Parser {
 		@Override public int getRuleIndex() { return RULE_program; }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof mipsgrammarListener ) ((mipsgrammarListener)listener).enterProgram(this);
+			if ( listener instanceof MipsListener ) ((MipsListener)listener).enterProgram(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof mipsgrammarListener ) ((mipsgrammarListener)listener).exitProgram(this);
+			if ( listener instanceof MipsListener ) ((MipsListener)listener).exitProgram(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof MipsVisitor ) return ((MipsVisitor<? extends T>)visitor).visitProgram(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -172,11 +175,16 @@ public class mipsgrammarParser extends Parser {
 		@Override public int getRuleIndex() { return RULE_line; }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof mipsgrammarListener ) ((mipsgrammarListener)listener).enterLine(this);
+			if ( listener instanceof MipsListener ) ((MipsListener)listener).enterLine(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof mipsgrammarListener ) ((mipsgrammarListener)listener).exitLine(this);
+			if ( listener instanceof MipsListener ) ((MipsListener)listener).exitLine(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof MipsVisitor ) return ((MipsVisitor<? extends T>)visitor).visitLine(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -331,11 +339,16 @@ public class mipsgrammarParser extends Parser {
 		@Override public int getRuleIndex() { return RULE_command; }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof mipsgrammarListener ) ((mipsgrammarListener)listener).enterCommand(this);
+			if ( listener instanceof MipsListener ) ((MipsListener)listener).enterCommand(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof mipsgrammarListener ) ((mipsgrammarListener)listener).exitCommand(this);
+			if ( listener instanceof MipsListener ) ((MipsListener)listener).exitCommand(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof MipsVisitor ) return ((MipsVisitor<? extends T>)visitor).visitCommand(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -611,10 +624,10 @@ public class mipsgrammarParser extends Parser {
 	}
 
 	public static class AddContext extends ParserRuleContext {
-		public TerminalNode ADD() { return getToken(mipsgrammarParser.ADD, 0); }
-		public List<TerminalNode> REGISTER() { return getTokens(mipsgrammarParser.REGISTER); }
+		public TerminalNode ADD() { return getToken(MipsParser.ADD, 0); }
+		public List<TerminalNode> REGISTER() { return getTokens(MipsParser.REGISTER); }
 		public TerminalNode REGISTER(int i) {
-			return getToken(mipsgrammarParser.REGISTER, i);
+			return getToken(MipsParser.REGISTER, i);
 		}
 		public AddContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
@@ -622,11 +635,16 @@ public class mipsgrammarParser extends Parser {
 		@Override public int getRuleIndex() { return RULE_add; }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof mipsgrammarListener ) ((mipsgrammarListener)listener).enterAdd(this);
+			if ( listener instanceof MipsListener ) ((MipsListener)listener).enterAdd(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof mipsgrammarListener ) ((mipsgrammarListener)listener).exitAdd(this);
+			if ( listener instanceof MipsListener ) ((MipsListener)listener).exitAdd(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof MipsVisitor ) return ((MipsVisitor<? extends T>)visitor).visitAdd(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -658,23 +676,28 @@ public class mipsgrammarParser extends Parser {
 	}
 
 	public static class AddiContext extends ParserRuleContext {
-		public TerminalNode ADDI() { return getToken(mipsgrammarParser.ADDI, 0); }
-		public List<TerminalNode> REGISTER() { return getTokens(mipsgrammarParser.REGISTER); }
+		public TerminalNode ADDI() { return getToken(MipsParser.ADDI, 0); }
+		public List<TerminalNode> REGISTER() { return getTokens(MipsParser.REGISTER); }
 		public TerminalNode REGISTER(int i) {
-			return getToken(mipsgrammarParser.REGISTER, i);
+			return getToken(MipsParser.REGISTER, i);
 		}
-		public TerminalNode INT() { return getToken(mipsgrammarParser.INT, 0); }
+		public TerminalNode INT() { return getToken(MipsParser.INT, 0); }
 		public AddiContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
 		@Override public int getRuleIndex() { return RULE_addi; }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof mipsgrammarListener ) ((mipsgrammarListener)listener).enterAddi(this);
+			if ( listener instanceof MipsListener ) ((MipsListener)listener).enterAddi(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof mipsgrammarListener ) ((mipsgrammarListener)listener).exitAddi(this);
+			if ( listener instanceof MipsListener ) ((MipsListener)listener).exitAddi(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof MipsVisitor ) return ((MipsVisitor<? extends T>)visitor).visitAddi(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -706,23 +729,28 @@ public class mipsgrammarParser extends Parser {
 	}
 
 	public static class AddiuContext extends ParserRuleContext {
-		public TerminalNode ADDIU() { return getToken(mipsgrammarParser.ADDIU, 0); }
-		public List<TerminalNode> REGISTER() { return getTokens(mipsgrammarParser.REGISTER); }
+		public TerminalNode ADDIU() { return getToken(MipsParser.ADDIU, 0); }
+		public List<TerminalNode> REGISTER() { return getTokens(MipsParser.REGISTER); }
 		public TerminalNode REGISTER(int i) {
-			return getToken(mipsgrammarParser.REGISTER, i);
+			return getToken(MipsParser.REGISTER, i);
 		}
-		public TerminalNode INT() { return getToken(mipsgrammarParser.INT, 0); }
+		public TerminalNode INT() { return getToken(MipsParser.INT, 0); }
 		public AddiuContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
 		@Override public int getRuleIndex() { return RULE_addiu; }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof mipsgrammarListener ) ((mipsgrammarListener)listener).enterAddiu(this);
+			if ( listener instanceof MipsListener ) ((MipsListener)listener).enterAddiu(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof mipsgrammarListener ) ((mipsgrammarListener)listener).exitAddiu(this);
+			if ( listener instanceof MipsListener ) ((MipsListener)listener).exitAddiu(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof MipsVisitor ) return ((MipsVisitor<? extends T>)visitor).visitAddiu(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -754,10 +782,10 @@ public class mipsgrammarParser extends Parser {
 	}
 
 	public static class AdduContext extends ParserRuleContext {
-		public TerminalNode ADDU() { return getToken(mipsgrammarParser.ADDU, 0); }
-		public List<TerminalNode> REGISTER() { return getTokens(mipsgrammarParser.REGISTER); }
+		public TerminalNode ADDU() { return getToken(MipsParser.ADDU, 0); }
+		public List<TerminalNode> REGISTER() { return getTokens(MipsParser.REGISTER); }
 		public TerminalNode REGISTER(int i) {
-			return getToken(mipsgrammarParser.REGISTER, i);
+			return getToken(MipsParser.REGISTER, i);
 		}
 		public AdduContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
@@ -765,11 +793,16 @@ public class mipsgrammarParser extends Parser {
 		@Override public int getRuleIndex() { return RULE_addu; }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof mipsgrammarListener ) ((mipsgrammarListener)listener).enterAddu(this);
+			if ( listener instanceof MipsListener ) ((MipsListener)listener).enterAddu(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof mipsgrammarListener ) ((mipsgrammarListener)listener).exitAddu(this);
+			if ( listener instanceof MipsListener ) ((MipsListener)listener).exitAddu(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof MipsVisitor ) return ((MipsVisitor<? extends T>)visitor).visitAddu(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -801,10 +834,10 @@ public class mipsgrammarParser extends Parser {
 	}
 
 	public static class AndContext extends ParserRuleContext {
-		public TerminalNode AND() { return getToken(mipsgrammarParser.AND, 0); }
-		public List<TerminalNode> REGISTER() { return getTokens(mipsgrammarParser.REGISTER); }
+		public TerminalNode AND() { return getToken(MipsParser.AND, 0); }
+		public List<TerminalNode> REGISTER() { return getTokens(MipsParser.REGISTER); }
 		public TerminalNode REGISTER(int i) {
-			return getToken(mipsgrammarParser.REGISTER, i);
+			return getToken(MipsParser.REGISTER, i);
 		}
 		public AndContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
@@ -812,11 +845,16 @@ public class mipsgrammarParser extends Parser {
 		@Override public int getRuleIndex() { return RULE_and; }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof mipsgrammarListener ) ((mipsgrammarListener)listener).enterAnd(this);
+			if ( listener instanceof MipsListener ) ((MipsListener)listener).enterAnd(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof mipsgrammarListener ) ((mipsgrammarListener)listener).exitAnd(this);
+			if ( listener instanceof MipsListener ) ((MipsListener)listener).exitAnd(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof MipsVisitor ) return ((MipsVisitor<? extends T>)visitor).visitAnd(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -848,23 +886,28 @@ public class mipsgrammarParser extends Parser {
 	}
 
 	public static class AndiContext extends ParserRuleContext {
-		public TerminalNode ANDI() { return getToken(mipsgrammarParser.ANDI, 0); }
-		public List<TerminalNode> REGISTER() { return getTokens(mipsgrammarParser.REGISTER); }
+		public TerminalNode ANDI() { return getToken(MipsParser.ANDI, 0); }
+		public List<TerminalNode> REGISTER() { return getTokens(MipsParser.REGISTER); }
 		public TerminalNode REGISTER(int i) {
-			return getToken(mipsgrammarParser.REGISTER, i);
+			return getToken(MipsParser.REGISTER, i);
 		}
-		public TerminalNode INT() { return getToken(mipsgrammarParser.INT, 0); }
+		public TerminalNode INT() { return getToken(MipsParser.INT, 0); }
 		public AndiContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
 		@Override public int getRuleIndex() { return RULE_andi; }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof mipsgrammarListener ) ((mipsgrammarListener)listener).enterAndi(this);
+			if ( listener instanceof MipsListener ) ((MipsListener)listener).enterAndi(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof mipsgrammarListener ) ((mipsgrammarListener)listener).exitAndi(this);
+			if ( listener instanceof MipsListener ) ((MipsListener)listener).exitAndi(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof MipsVisitor ) return ((MipsVisitor<? extends T>)visitor).visitAndi(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -896,23 +939,28 @@ public class mipsgrammarParser extends Parser {
 	}
 
 	public static class BeqContext extends ParserRuleContext {
-		public TerminalNode BEQ() { return getToken(mipsgrammarParser.BEQ, 0); }
-		public List<TerminalNode> REGISTER() { return getTokens(mipsgrammarParser.REGISTER); }
+		public TerminalNode BEQ() { return getToken(MipsParser.BEQ, 0); }
+		public List<TerminalNode> REGISTER() { return getTokens(MipsParser.REGISTER); }
 		public TerminalNode REGISTER(int i) {
-			return getToken(mipsgrammarParser.REGISTER, i);
+			return getToken(MipsParser.REGISTER, i);
 		}
-		public TerminalNode LABEL() { return getToken(mipsgrammarParser.LABEL, 0); }
+		public TerminalNode LABEL() { return getToken(MipsParser.LABEL, 0); }
 		public BeqContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
 		@Override public int getRuleIndex() { return RULE_beq; }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof mipsgrammarListener ) ((mipsgrammarListener)listener).enterBeq(this);
+			if ( listener instanceof MipsListener ) ((MipsListener)listener).enterBeq(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof mipsgrammarListener ) ((mipsgrammarListener)listener).exitBeq(this);
+			if ( listener instanceof MipsListener ) ((MipsListener)listener).exitBeq(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof MipsVisitor ) return ((MipsVisitor<? extends T>)visitor).visitBeq(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -944,20 +992,25 @@ public class mipsgrammarParser extends Parser {
 	}
 
 	public static class BgezContext extends ParserRuleContext {
-		public TerminalNode BGEZ() { return getToken(mipsgrammarParser.BGEZ, 0); }
-		public TerminalNode REGISTER() { return getToken(mipsgrammarParser.REGISTER, 0); }
-		public TerminalNode LABEL() { return getToken(mipsgrammarParser.LABEL, 0); }
+		public TerminalNode BGEZ() { return getToken(MipsParser.BGEZ, 0); }
+		public TerminalNode REGISTER() { return getToken(MipsParser.REGISTER, 0); }
+		public TerminalNode LABEL() { return getToken(MipsParser.LABEL, 0); }
 		public BgezContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
 		@Override public int getRuleIndex() { return RULE_bgez; }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof mipsgrammarListener ) ((mipsgrammarListener)listener).enterBgez(this);
+			if ( listener instanceof MipsListener ) ((MipsListener)listener).enterBgez(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof mipsgrammarListener ) ((mipsgrammarListener)listener).exitBgez(this);
+			if ( listener instanceof MipsListener ) ((MipsListener)listener).exitBgez(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof MipsVisitor ) return ((MipsVisitor<? extends T>)visitor).visitBgez(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -987,20 +1040,25 @@ public class mipsgrammarParser extends Parser {
 	}
 
 	public static class BgtzContext extends ParserRuleContext {
-		public TerminalNode BGTZ() { return getToken(mipsgrammarParser.BGTZ, 0); }
-		public TerminalNode REGISTER() { return getToken(mipsgrammarParser.REGISTER, 0); }
-		public TerminalNode LABEL() { return getToken(mipsgrammarParser.LABEL, 0); }
+		public TerminalNode BGTZ() { return getToken(MipsParser.BGTZ, 0); }
+		public TerminalNode REGISTER() { return getToken(MipsParser.REGISTER, 0); }
+		public TerminalNode LABEL() { return getToken(MipsParser.LABEL, 0); }
 		public BgtzContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
 		@Override public int getRuleIndex() { return RULE_bgtz; }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof mipsgrammarListener ) ((mipsgrammarListener)listener).enterBgtz(this);
+			if ( listener instanceof MipsListener ) ((MipsListener)listener).enterBgtz(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof mipsgrammarListener ) ((mipsgrammarListener)listener).exitBgtz(this);
+			if ( listener instanceof MipsListener ) ((MipsListener)listener).exitBgtz(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof MipsVisitor ) return ((MipsVisitor<? extends T>)visitor).visitBgtz(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -1030,20 +1088,25 @@ public class mipsgrammarParser extends Parser {
 	}
 
 	public static class BlezContext extends ParserRuleContext {
-		public TerminalNode BLEZ() { return getToken(mipsgrammarParser.BLEZ, 0); }
-		public TerminalNode REGISTER() { return getToken(mipsgrammarParser.REGISTER, 0); }
-		public TerminalNode LABEL() { return getToken(mipsgrammarParser.LABEL, 0); }
+		public TerminalNode BLEZ() { return getToken(MipsParser.BLEZ, 0); }
+		public TerminalNode REGISTER() { return getToken(MipsParser.REGISTER, 0); }
+		public TerminalNode LABEL() { return getToken(MipsParser.LABEL, 0); }
 		public BlezContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
 		@Override public int getRuleIndex() { return RULE_blez; }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof mipsgrammarListener ) ((mipsgrammarListener)listener).enterBlez(this);
+			if ( listener instanceof MipsListener ) ((MipsListener)listener).enterBlez(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof mipsgrammarListener ) ((mipsgrammarListener)listener).exitBlez(this);
+			if ( listener instanceof MipsListener ) ((MipsListener)listener).exitBlez(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof MipsVisitor ) return ((MipsVisitor<? extends T>)visitor).visitBlez(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -1073,20 +1136,25 @@ public class mipsgrammarParser extends Parser {
 	}
 
 	public static class BltzContext extends ParserRuleContext {
-		public TerminalNode BLTZ() { return getToken(mipsgrammarParser.BLTZ, 0); }
-		public TerminalNode REGISTER() { return getToken(mipsgrammarParser.REGISTER, 0); }
-		public TerminalNode LABEL() { return getToken(mipsgrammarParser.LABEL, 0); }
+		public TerminalNode BLTZ() { return getToken(MipsParser.BLTZ, 0); }
+		public TerminalNode REGISTER() { return getToken(MipsParser.REGISTER, 0); }
+		public TerminalNode LABEL() { return getToken(MipsParser.LABEL, 0); }
 		public BltzContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
 		@Override public int getRuleIndex() { return RULE_bltz; }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof mipsgrammarListener ) ((mipsgrammarListener)listener).enterBltz(this);
+			if ( listener instanceof MipsListener ) ((MipsListener)listener).enterBltz(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof mipsgrammarListener ) ((mipsgrammarListener)listener).exitBltz(this);
+			if ( listener instanceof MipsListener ) ((MipsListener)listener).exitBltz(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof MipsVisitor ) return ((MipsVisitor<? extends T>)visitor).visitBltz(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -1116,23 +1184,28 @@ public class mipsgrammarParser extends Parser {
 	}
 
 	public static class BneContext extends ParserRuleContext {
-		public TerminalNode BNE() { return getToken(mipsgrammarParser.BNE, 0); }
-		public List<TerminalNode> REGISTER() { return getTokens(mipsgrammarParser.REGISTER); }
+		public TerminalNode BNE() { return getToken(MipsParser.BNE, 0); }
+		public List<TerminalNode> REGISTER() { return getTokens(MipsParser.REGISTER); }
 		public TerminalNode REGISTER(int i) {
-			return getToken(mipsgrammarParser.REGISTER, i);
+			return getToken(MipsParser.REGISTER, i);
 		}
-		public TerminalNode LABEL() { return getToken(mipsgrammarParser.LABEL, 0); }
+		public TerminalNode LABEL() { return getToken(MipsParser.LABEL, 0); }
 		public BneContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
 		@Override public int getRuleIndex() { return RULE_bne; }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof mipsgrammarListener ) ((mipsgrammarListener)listener).enterBne(this);
+			if ( listener instanceof MipsListener ) ((MipsListener)listener).enterBne(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof mipsgrammarListener ) ((mipsgrammarListener)listener).exitBne(this);
+			if ( listener instanceof MipsListener ) ((MipsListener)listener).exitBne(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof MipsVisitor ) return ((MipsVisitor<? extends T>)visitor).visitBne(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -1164,18 +1237,23 @@ public class mipsgrammarParser extends Parser {
 	}
 
 	public static class Break_Context extends ParserRuleContext {
-		public TerminalNode BREAK() { return getToken(mipsgrammarParser.BREAK, 0); }
+		public TerminalNode BREAK() { return getToken(MipsParser.BREAK, 0); }
 		public Break_Context(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
 		@Override public int getRuleIndex() { return RULE_break_; }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof mipsgrammarListener ) ((mipsgrammarListener)listener).enterBreak_(this);
+			if ( listener instanceof MipsListener ) ((MipsListener)listener).enterBreak_(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof mipsgrammarListener ) ((mipsgrammarListener)listener).exitBreak_(this);
+			if ( listener instanceof MipsListener ) ((MipsListener)listener).exitBreak_(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof MipsVisitor ) return ((MipsVisitor<? extends T>)visitor).visitBreak_(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -1201,10 +1279,10 @@ public class mipsgrammarParser extends Parser {
 	}
 
 	public static class CloContext extends ParserRuleContext {
-		public TerminalNode CLO() { return getToken(mipsgrammarParser.CLO, 0); }
-		public List<TerminalNode> REGISTER() { return getTokens(mipsgrammarParser.REGISTER); }
+		public TerminalNode CLO() { return getToken(MipsParser.CLO, 0); }
+		public List<TerminalNode> REGISTER() { return getTokens(MipsParser.REGISTER); }
 		public TerminalNode REGISTER(int i) {
-			return getToken(mipsgrammarParser.REGISTER, i);
+			return getToken(MipsParser.REGISTER, i);
 		}
 		public CloContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
@@ -1212,11 +1290,16 @@ public class mipsgrammarParser extends Parser {
 		@Override public int getRuleIndex() { return RULE_clo; }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof mipsgrammarListener ) ((mipsgrammarListener)listener).enterClo(this);
+			if ( listener instanceof MipsListener ) ((MipsListener)listener).enterClo(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof mipsgrammarListener ) ((mipsgrammarListener)listener).exitClo(this);
+			if ( listener instanceof MipsListener ) ((MipsListener)listener).exitClo(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof MipsVisitor ) return ((MipsVisitor<? extends T>)visitor).visitClo(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -1246,10 +1329,10 @@ public class mipsgrammarParser extends Parser {
 	}
 
 	public static class ClzContext extends ParserRuleContext {
-		public TerminalNode CLZ() { return getToken(mipsgrammarParser.CLZ, 0); }
-		public List<TerminalNode> REGISTER() { return getTokens(mipsgrammarParser.REGISTER); }
+		public TerminalNode CLZ() { return getToken(MipsParser.CLZ, 0); }
+		public List<TerminalNode> REGISTER() { return getTokens(MipsParser.REGISTER); }
 		public TerminalNode REGISTER(int i) {
-			return getToken(mipsgrammarParser.REGISTER, i);
+			return getToken(MipsParser.REGISTER, i);
 		}
 		public ClzContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
@@ -1257,11 +1340,16 @@ public class mipsgrammarParser extends Parser {
 		@Override public int getRuleIndex() { return RULE_clz; }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof mipsgrammarListener ) ((mipsgrammarListener)listener).enterClz(this);
+			if ( listener instanceof MipsListener ) ((MipsListener)listener).enterClz(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof mipsgrammarListener ) ((mipsgrammarListener)listener).exitClz(this);
+			if ( listener instanceof MipsListener ) ((MipsListener)listener).exitClz(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof MipsVisitor ) return ((MipsVisitor<? extends T>)visitor).visitClz(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -1291,10 +1379,10 @@ public class mipsgrammarParser extends Parser {
 	}
 
 	public static class DivContext extends ParserRuleContext {
-		public TerminalNode DIV() { return getToken(mipsgrammarParser.DIV, 0); }
-		public List<TerminalNode> REGISTER() { return getTokens(mipsgrammarParser.REGISTER); }
+		public TerminalNode DIV() { return getToken(MipsParser.DIV, 0); }
+		public List<TerminalNode> REGISTER() { return getTokens(MipsParser.REGISTER); }
 		public TerminalNode REGISTER(int i) {
-			return getToken(mipsgrammarParser.REGISTER, i);
+			return getToken(MipsParser.REGISTER, i);
 		}
 		public DivContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
@@ -1302,11 +1390,16 @@ public class mipsgrammarParser extends Parser {
 		@Override public int getRuleIndex() { return RULE_div; }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof mipsgrammarListener ) ((mipsgrammarListener)listener).enterDiv(this);
+			if ( listener instanceof MipsListener ) ((MipsListener)listener).enterDiv(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof mipsgrammarListener ) ((mipsgrammarListener)listener).exitDiv(this);
+			if ( listener instanceof MipsListener ) ((MipsListener)listener).exitDiv(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof MipsVisitor ) return ((MipsVisitor<? extends T>)visitor).visitDiv(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -1336,10 +1429,10 @@ public class mipsgrammarParser extends Parser {
 	}
 
 	public static class DivuContext extends ParserRuleContext {
-		public TerminalNode DIVU() { return getToken(mipsgrammarParser.DIVU, 0); }
-		public List<TerminalNode> REGISTER() { return getTokens(mipsgrammarParser.REGISTER); }
+		public TerminalNode DIVU() { return getToken(MipsParser.DIVU, 0); }
+		public List<TerminalNode> REGISTER() { return getTokens(MipsParser.REGISTER); }
 		public TerminalNode REGISTER(int i) {
-			return getToken(mipsgrammarParser.REGISTER, i);
+			return getToken(MipsParser.REGISTER, i);
 		}
 		public DivuContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
@@ -1347,11 +1440,16 @@ public class mipsgrammarParser extends Parser {
 		@Override public int getRuleIndex() { return RULE_divu; }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof mipsgrammarListener ) ((mipsgrammarListener)listener).enterDivu(this);
+			if ( listener instanceof MipsListener ) ((MipsListener)listener).enterDivu(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof mipsgrammarListener ) ((mipsgrammarListener)listener).exitDivu(this);
+			if ( listener instanceof MipsListener ) ((MipsListener)listener).exitDivu(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof MipsVisitor ) return ((MipsVisitor<? extends T>)visitor).visitDivu(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -1381,19 +1479,24 @@ public class mipsgrammarParser extends Parser {
 	}
 
 	public static class JContext extends ParserRuleContext {
-		public TerminalNode J() { return getToken(mipsgrammarParser.J, 0); }
-		public TerminalNode LABEL() { return getToken(mipsgrammarParser.LABEL, 0); }
+		public TerminalNode J() { return getToken(MipsParser.J, 0); }
+		public TerminalNode LABEL() { return getToken(MipsParser.LABEL, 0); }
 		public JContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
 		@Override public int getRuleIndex() { return RULE_j; }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof mipsgrammarListener ) ((mipsgrammarListener)listener).enterJ(this);
+			if ( listener instanceof MipsListener ) ((MipsListener)listener).enterJ(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof mipsgrammarListener ) ((mipsgrammarListener)listener).exitJ(this);
+			if ( listener instanceof MipsListener ) ((MipsListener)listener).exitJ(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof MipsVisitor ) return ((MipsVisitor<? extends T>)visitor).visitJ(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -1421,19 +1524,24 @@ public class mipsgrammarParser extends Parser {
 	}
 
 	public static class JalContext extends ParserRuleContext {
-		public TerminalNode JAL() { return getToken(mipsgrammarParser.JAL, 0); }
-		public TerminalNode LABEL() { return getToken(mipsgrammarParser.LABEL, 0); }
+		public TerminalNode JAL() { return getToken(MipsParser.JAL, 0); }
+		public TerminalNode LABEL() { return getToken(MipsParser.LABEL, 0); }
 		public JalContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
 		@Override public int getRuleIndex() { return RULE_jal; }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof mipsgrammarListener ) ((mipsgrammarListener)listener).enterJal(this);
+			if ( listener instanceof MipsListener ) ((MipsListener)listener).enterJal(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof mipsgrammarListener ) ((mipsgrammarListener)listener).exitJal(this);
+			if ( listener instanceof MipsListener ) ((MipsListener)listener).exitJal(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof MipsVisitor ) return ((MipsVisitor<? extends T>)visitor).visitJal(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -1461,19 +1569,24 @@ public class mipsgrammarParser extends Parser {
 	}
 
 	public static class JalrContext extends ParserRuleContext {
-		public TerminalNode JALR() { return getToken(mipsgrammarParser.JALR, 0); }
-		public TerminalNode REGISTER() { return getToken(mipsgrammarParser.REGISTER, 0); }
+		public TerminalNode JALR() { return getToken(MipsParser.JALR, 0); }
+		public TerminalNode REGISTER() { return getToken(MipsParser.REGISTER, 0); }
 		public JalrContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
 		@Override public int getRuleIndex() { return RULE_jalr; }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof mipsgrammarListener ) ((mipsgrammarListener)listener).enterJalr(this);
+			if ( listener instanceof MipsListener ) ((MipsListener)listener).enterJalr(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof mipsgrammarListener ) ((mipsgrammarListener)listener).exitJalr(this);
+			if ( listener instanceof MipsListener ) ((MipsListener)listener).exitJalr(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof MipsVisitor ) return ((MipsVisitor<? extends T>)visitor).visitJalr(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -1501,19 +1614,24 @@ public class mipsgrammarParser extends Parser {
 	}
 
 	public static class JrContext extends ParserRuleContext {
-		public TerminalNode JR() { return getToken(mipsgrammarParser.JR, 0); }
-		public TerminalNode REGISTER() { return getToken(mipsgrammarParser.REGISTER, 0); }
+		public TerminalNode JR() { return getToken(MipsParser.JR, 0); }
+		public TerminalNode REGISTER() { return getToken(MipsParser.REGISTER, 0); }
 		public JrContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
 		@Override public int getRuleIndex() { return RULE_jr; }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof mipsgrammarListener ) ((mipsgrammarListener)listener).enterJr(this);
+			if ( listener instanceof MipsListener ) ((MipsListener)listener).enterJr(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof mipsgrammarListener ) ((mipsgrammarListener)listener).exitJr(this);
+			if ( listener instanceof MipsListener ) ((MipsListener)listener).exitJr(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof MipsVisitor ) return ((MipsVisitor<? extends T>)visitor).visitJr(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -1541,25 +1659,30 @@ public class mipsgrammarParser extends Parser {
 	}
 
 	public static class LbContext extends ParserRuleContext {
-		public TerminalNode LB() { return getToken(mipsgrammarParser.LB, 0); }
-		public List<TerminalNode> REGISTER() { return getTokens(mipsgrammarParser.REGISTER); }
+		public TerminalNode LB() { return getToken(MipsParser.LB, 0); }
+		public List<TerminalNode> REGISTER() { return getTokens(MipsParser.REGISTER); }
 		public TerminalNode REGISTER(int i) {
-			return getToken(mipsgrammarParser.REGISTER, i);
+			return getToken(MipsParser.REGISTER, i);
 		}
-		public TerminalNode INT() { return getToken(mipsgrammarParser.INT, 0); }
-		public TerminalNode LPAREN() { return getToken(mipsgrammarParser.LPAREN, 0); }
-		public TerminalNode RPAREN() { return getToken(mipsgrammarParser.RPAREN, 0); }
+		public TerminalNode INT() { return getToken(MipsParser.INT, 0); }
+		public TerminalNode LPAREN() { return getToken(MipsParser.LPAREN, 0); }
+		public TerminalNode RPAREN() { return getToken(MipsParser.RPAREN, 0); }
 		public LbContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
 		@Override public int getRuleIndex() { return RULE_lb; }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof mipsgrammarListener ) ((mipsgrammarListener)listener).enterLb(this);
+			if ( listener instanceof MipsListener ) ((MipsListener)listener).enterLb(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof mipsgrammarListener ) ((mipsgrammarListener)listener).exitLb(this);
+			if ( listener instanceof MipsListener ) ((MipsListener)listener).exitLb(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof MipsVisitor ) return ((MipsVisitor<? extends T>)visitor).visitLb(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -1595,25 +1718,30 @@ public class mipsgrammarParser extends Parser {
 	}
 
 	public static class LbuContext extends ParserRuleContext {
-		public TerminalNode LBU() { return getToken(mipsgrammarParser.LBU, 0); }
-		public List<TerminalNode> REGISTER() { return getTokens(mipsgrammarParser.REGISTER); }
+		public TerminalNode LBU() { return getToken(MipsParser.LBU, 0); }
+		public List<TerminalNode> REGISTER() { return getTokens(MipsParser.REGISTER); }
 		public TerminalNode REGISTER(int i) {
-			return getToken(mipsgrammarParser.REGISTER, i);
+			return getToken(MipsParser.REGISTER, i);
 		}
-		public TerminalNode INT() { return getToken(mipsgrammarParser.INT, 0); }
-		public TerminalNode LPAREN() { return getToken(mipsgrammarParser.LPAREN, 0); }
-		public TerminalNode RPAREN() { return getToken(mipsgrammarParser.RPAREN, 0); }
+		public TerminalNode INT() { return getToken(MipsParser.INT, 0); }
+		public TerminalNode LPAREN() { return getToken(MipsParser.LPAREN, 0); }
+		public TerminalNode RPAREN() { return getToken(MipsParser.RPAREN, 0); }
 		public LbuContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
 		@Override public int getRuleIndex() { return RULE_lbu; }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof mipsgrammarListener ) ((mipsgrammarListener)listener).enterLbu(this);
+			if ( listener instanceof MipsListener ) ((MipsListener)listener).enterLbu(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof mipsgrammarListener ) ((mipsgrammarListener)listener).exitLbu(this);
+			if ( listener instanceof MipsListener ) ((MipsListener)listener).exitLbu(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof MipsVisitor ) return ((MipsVisitor<? extends T>)visitor).visitLbu(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -1649,25 +1777,30 @@ public class mipsgrammarParser extends Parser {
 	}
 
 	public static class LhContext extends ParserRuleContext {
-		public TerminalNode LH() { return getToken(mipsgrammarParser.LH, 0); }
-		public List<TerminalNode> REGISTER() { return getTokens(mipsgrammarParser.REGISTER); }
+		public TerminalNode LH() { return getToken(MipsParser.LH, 0); }
+		public List<TerminalNode> REGISTER() { return getTokens(MipsParser.REGISTER); }
 		public TerminalNode REGISTER(int i) {
-			return getToken(mipsgrammarParser.REGISTER, i);
+			return getToken(MipsParser.REGISTER, i);
 		}
-		public TerminalNode INT() { return getToken(mipsgrammarParser.INT, 0); }
-		public TerminalNode LPAREN() { return getToken(mipsgrammarParser.LPAREN, 0); }
-		public TerminalNode RPAREN() { return getToken(mipsgrammarParser.RPAREN, 0); }
+		public TerminalNode INT() { return getToken(MipsParser.INT, 0); }
+		public TerminalNode LPAREN() { return getToken(MipsParser.LPAREN, 0); }
+		public TerminalNode RPAREN() { return getToken(MipsParser.RPAREN, 0); }
 		public LhContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
 		@Override public int getRuleIndex() { return RULE_lh; }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof mipsgrammarListener ) ((mipsgrammarListener)listener).enterLh(this);
+			if ( listener instanceof MipsListener ) ((MipsListener)listener).enterLh(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof mipsgrammarListener ) ((mipsgrammarListener)listener).exitLh(this);
+			if ( listener instanceof MipsListener ) ((MipsListener)listener).exitLh(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof MipsVisitor ) return ((MipsVisitor<? extends T>)visitor).visitLh(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -1703,25 +1836,30 @@ public class mipsgrammarParser extends Parser {
 	}
 
 	public static class LhuContext extends ParserRuleContext {
-		public TerminalNode LHU() { return getToken(mipsgrammarParser.LHU, 0); }
-		public List<TerminalNode> REGISTER() { return getTokens(mipsgrammarParser.REGISTER); }
+		public TerminalNode LHU() { return getToken(MipsParser.LHU, 0); }
+		public List<TerminalNode> REGISTER() { return getTokens(MipsParser.REGISTER); }
 		public TerminalNode REGISTER(int i) {
-			return getToken(mipsgrammarParser.REGISTER, i);
+			return getToken(MipsParser.REGISTER, i);
 		}
-		public TerminalNode INT() { return getToken(mipsgrammarParser.INT, 0); }
-		public TerminalNode LPAREN() { return getToken(mipsgrammarParser.LPAREN, 0); }
-		public TerminalNode RPAREN() { return getToken(mipsgrammarParser.RPAREN, 0); }
+		public TerminalNode INT() { return getToken(MipsParser.INT, 0); }
+		public TerminalNode LPAREN() { return getToken(MipsParser.LPAREN, 0); }
+		public TerminalNode RPAREN() { return getToken(MipsParser.RPAREN, 0); }
 		public LhuContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
 		@Override public int getRuleIndex() { return RULE_lhu; }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof mipsgrammarListener ) ((mipsgrammarListener)listener).enterLhu(this);
+			if ( listener instanceof MipsListener ) ((MipsListener)listener).enterLhu(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof mipsgrammarListener ) ((mipsgrammarListener)listener).exitLhu(this);
+			if ( listener instanceof MipsListener ) ((MipsListener)listener).exitLhu(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof MipsVisitor ) return ((MipsVisitor<? extends T>)visitor).visitLhu(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -1757,25 +1895,30 @@ public class mipsgrammarParser extends Parser {
 	}
 
 	public static class LwContext extends ParserRuleContext {
-		public TerminalNode LW() { return getToken(mipsgrammarParser.LW, 0); }
-		public List<TerminalNode> REGISTER() { return getTokens(mipsgrammarParser.REGISTER); }
+		public TerminalNode LW() { return getToken(MipsParser.LW, 0); }
+		public List<TerminalNode> REGISTER() { return getTokens(MipsParser.REGISTER); }
 		public TerminalNode REGISTER(int i) {
-			return getToken(mipsgrammarParser.REGISTER, i);
+			return getToken(MipsParser.REGISTER, i);
 		}
-		public TerminalNode INT() { return getToken(mipsgrammarParser.INT, 0); }
-		public TerminalNode LPAREN() { return getToken(mipsgrammarParser.LPAREN, 0); }
-		public TerminalNode RPAREN() { return getToken(mipsgrammarParser.RPAREN, 0); }
+		public TerminalNode INT() { return getToken(MipsParser.INT, 0); }
+		public TerminalNode LPAREN() { return getToken(MipsParser.LPAREN, 0); }
+		public TerminalNode RPAREN() { return getToken(MipsParser.RPAREN, 0); }
 		public LwContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
 		@Override public int getRuleIndex() { return RULE_lw; }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof mipsgrammarListener ) ((mipsgrammarListener)listener).enterLw(this);
+			if ( listener instanceof MipsListener ) ((MipsListener)listener).enterLw(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof mipsgrammarListener ) ((mipsgrammarListener)listener).exitLw(this);
+			if ( listener instanceof MipsListener ) ((MipsListener)listener).exitLw(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof MipsVisitor ) return ((MipsVisitor<? extends T>)visitor).visitLw(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -1811,10 +1954,10 @@ public class mipsgrammarParser extends Parser {
 	}
 
 	public static class MovnContext extends ParserRuleContext {
-		public TerminalNode MOVN() { return getToken(mipsgrammarParser.MOVN, 0); }
-		public List<TerminalNode> REGISTER() { return getTokens(mipsgrammarParser.REGISTER); }
+		public TerminalNode MOVN() { return getToken(MipsParser.MOVN, 0); }
+		public List<TerminalNode> REGISTER() { return getTokens(MipsParser.REGISTER); }
 		public TerminalNode REGISTER(int i) {
-			return getToken(mipsgrammarParser.REGISTER, i);
+			return getToken(MipsParser.REGISTER, i);
 		}
 		public MovnContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
@@ -1822,11 +1965,16 @@ public class mipsgrammarParser extends Parser {
 		@Override public int getRuleIndex() { return RULE_movn; }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof mipsgrammarListener ) ((mipsgrammarListener)listener).enterMovn(this);
+			if ( listener instanceof MipsListener ) ((MipsListener)listener).enterMovn(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof mipsgrammarListener ) ((mipsgrammarListener)listener).exitMovn(this);
+			if ( listener instanceof MipsListener ) ((MipsListener)listener).exitMovn(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof MipsVisitor ) return ((MipsVisitor<? extends T>)visitor).visitMovn(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -1858,10 +2006,10 @@ public class mipsgrammarParser extends Parser {
 	}
 
 	public static class MovzContext extends ParserRuleContext {
-		public TerminalNode MOVZ() { return getToken(mipsgrammarParser.MOVZ, 0); }
-		public List<TerminalNode> REGISTER() { return getTokens(mipsgrammarParser.REGISTER); }
+		public TerminalNode MOVZ() { return getToken(MipsParser.MOVZ, 0); }
+		public List<TerminalNode> REGISTER() { return getTokens(MipsParser.REGISTER); }
 		public TerminalNode REGISTER(int i) {
-			return getToken(mipsgrammarParser.REGISTER, i);
+			return getToken(MipsParser.REGISTER, i);
 		}
 		public MovzContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
@@ -1869,11 +2017,16 @@ public class mipsgrammarParser extends Parser {
 		@Override public int getRuleIndex() { return RULE_movz; }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof mipsgrammarListener ) ((mipsgrammarListener)listener).enterMovz(this);
+			if ( listener instanceof MipsListener ) ((MipsListener)listener).enterMovz(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof mipsgrammarListener ) ((mipsgrammarListener)listener).exitMovz(this);
+			if ( listener instanceof MipsListener ) ((MipsListener)listener).exitMovz(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof MipsVisitor ) return ((MipsVisitor<? extends T>)visitor).visitMovz(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -1905,10 +2058,10 @@ public class mipsgrammarParser extends Parser {
 	}
 
 	public static class MulContext extends ParserRuleContext {
-		public TerminalNode MUL() { return getToken(mipsgrammarParser.MUL, 0); }
-		public List<TerminalNode> REGISTER() { return getTokens(mipsgrammarParser.REGISTER); }
+		public TerminalNode MUL() { return getToken(MipsParser.MUL, 0); }
+		public List<TerminalNode> REGISTER() { return getTokens(MipsParser.REGISTER); }
 		public TerminalNode REGISTER(int i) {
-			return getToken(mipsgrammarParser.REGISTER, i);
+			return getToken(MipsParser.REGISTER, i);
 		}
 		public MulContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
@@ -1916,11 +2069,16 @@ public class mipsgrammarParser extends Parser {
 		@Override public int getRuleIndex() { return RULE_mul; }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof mipsgrammarListener ) ((mipsgrammarListener)listener).enterMul(this);
+			if ( listener instanceof MipsListener ) ((MipsListener)listener).enterMul(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof mipsgrammarListener ) ((mipsgrammarListener)listener).exitMul(this);
+			if ( listener instanceof MipsListener ) ((MipsListener)listener).exitMul(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof MipsVisitor ) return ((MipsVisitor<? extends T>)visitor).visitMul(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -1952,10 +2110,10 @@ public class mipsgrammarParser extends Parser {
 	}
 
 	public static class MultContext extends ParserRuleContext {
-		public TerminalNode MULT() { return getToken(mipsgrammarParser.MULT, 0); }
-		public List<TerminalNode> REGISTER() { return getTokens(mipsgrammarParser.REGISTER); }
+		public TerminalNode MULT() { return getToken(MipsParser.MULT, 0); }
+		public List<TerminalNode> REGISTER() { return getTokens(MipsParser.REGISTER); }
 		public TerminalNode REGISTER(int i) {
-			return getToken(mipsgrammarParser.REGISTER, i);
+			return getToken(MipsParser.REGISTER, i);
 		}
 		public MultContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
@@ -1963,11 +2121,16 @@ public class mipsgrammarParser extends Parser {
 		@Override public int getRuleIndex() { return RULE_mult; }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof mipsgrammarListener ) ((mipsgrammarListener)listener).enterMult(this);
+			if ( listener instanceof MipsListener ) ((MipsListener)listener).enterMult(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof mipsgrammarListener ) ((mipsgrammarListener)listener).exitMult(this);
+			if ( listener instanceof MipsListener ) ((MipsListener)listener).exitMult(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof MipsVisitor ) return ((MipsVisitor<? extends T>)visitor).visitMult(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -1997,18 +2160,23 @@ public class mipsgrammarParser extends Parser {
 	}
 
 	public static class NopContext extends ParserRuleContext {
-		public TerminalNode NOP() { return getToken(mipsgrammarParser.NOP, 0); }
+		public TerminalNode NOP() { return getToken(MipsParser.NOP, 0); }
 		public NopContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
 		@Override public int getRuleIndex() { return RULE_nop; }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof mipsgrammarListener ) ((mipsgrammarListener)listener).enterNop(this);
+			if ( listener instanceof MipsListener ) ((MipsListener)listener).enterNop(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof mipsgrammarListener ) ((mipsgrammarListener)listener).exitNop(this);
+			if ( listener instanceof MipsListener ) ((MipsListener)listener).exitNop(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof MipsVisitor ) return ((MipsVisitor<? extends T>)visitor).visitNop(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -2034,10 +2202,10 @@ public class mipsgrammarParser extends Parser {
 	}
 
 	public static class NorContext extends ParserRuleContext {
-		public TerminalNode NOR() { return getToken(mipsgrammarParser.NOR, 0); }
-		public List<TerminalNode> REGISTER() { return getTokens(mipsgrammarParser.REGISTER); }
+		public TerminalNode NOR() { return getToken(MipsParser.NOR, 0); }
+		public List<TerminalNode> REGISTER() { return getTokens(MipsParser.REGISTER); }
 		public TerminalNode REGISTER(int i) {
-			return getToken(mipsgrammarParser.REGISTER, i);
+			return getToken(MipsParser.REGISTER, i);
 		}
 		public NorContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
@@ -2045,11 +2213,16 @@ public class mipsgrammarParser extends Parser {
 		@Override public int getRuleIndex() { return RULE_nor; }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof mipsgrammarListener ) ((mipsgrammarListener)listener).enterNor(this);
+			if ( listener instanceof MipsListener ) ((MipsListener)listener).enterNor(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof mipsgrammarListener ) ((mipsgrammarListener)listener).exitNor(this);
+			if ( listener instanceof MipsListener ) ((MipsListener)listener).exitNor(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof MipsVisitor ) return ((MipsVisitor<? extends T>)visitor).visitNor(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -2081,10 +2254,10 @@ public class mipsgrammarParser extends Parser {
 	}
 
 	public static class OrContext extends ParserRuleContext {
-		public TerminalNode OR() { return getToken(mipsgrammarParser.OR, 0); }
-		public List<TerminalNode> REGISTER() { return getTokens(mipsgrammarParser.REGISTER); }
+		public TerminalNode OR() { return getToken(MipsParser.OR, 0); }
+		public List<TerminalNode> REGISTER() { return getTokens(MipsParser.REGISTER); }
 		public TerminalNode REGISTER(int i) {
-			return getToken(mipsgrammarParser.REGISTER, i);
+			return getToken(MipsParser.REGISTER, i);
 		}
 		public OrContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
@@ -2092,11 +2265,16 @@ public class mipsgrammarParser extends Parser {
 		@Override public int getRuleIndex() { return RULE_or; }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof mipsgrammarListener ) ((mipsgrammarListener)listener).enterOr(this);
+			if ( listener instanceof MipsListener ) ((MipsListener)listener).enterOr(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof mipsgrammarListener ) ((mipsgrammarListener)listener).exitOr(this);
+			if ( listener instanceof MipsListener ) ((MipsListener)listener).exitOr(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof MipsVisitor ) return ((MipsVisitor<? extends T>)visitor).visitOr(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -2128,25 +2306,30 @@ public class mipsgrammarParser extends Parser {
 	}
 
 	public static class SbContext extends ParserRuleContext {
-		public TerminalNode SB() { return getToken(mipsgrammarParser.SB, 0); }
-		public List<TerminalNode> REGISTER() { return getTokens(mipsgrammarParser.REGISTER); }
+		public TerminalNode SB() { return getToken(MipsParser.SB, 0); }
+		public List<TerminalNode> REGISTER() { return getTokens(MipsParser.REGISTER); }
 		public TerminalNode REGISTER(int i) {
-			return getToken(mipsgrammarParser.REGISTER, i);
+			return getToken(MipsParser.REGISTER, i);
 		}
-		public TerminalNode INT() { return getToken(mipsgrammarParser.INT, 0); }
-		public TerminalNode LPAREN() { return getToken(mipsgrammarParser.LPAREN, 0); }
-		public TerminalNode RPAREN() { return getToken(mipsgrammarParser.RPAREN, 0); }
+		public TerminalNode INT() { return getToken(MipsParser.INT, 0); }
+		public TerminalNode LPAREN() { return getToken(MipsParser.LPAREN, 0); }
+		public TerminalNode RPAREN() { return getToken(MipsParser.RPAREN, 0); }
 		public SbContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
 		@Override public int getRuleIndex() { return RULE_sb; }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof mipsgrammarListener ) ((mipsgrammarListener)listener).enterSb(this);
+			if ( listener instanceof MipsListener ) ((MipsListener)listener).enterSb(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof mipsgrammarListener ) ((mipsgrammarListener)listener).exitSb(this);
+			if ( listener instanceof MipsListener ) ((MipsListener)listener).exitSb(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof MipsVisitor ) return ((MipsVisitor<? extends T>)visitor).visitSb(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -2182,10 +2365,10 @@ public class mipsgrammarParser extends Parser {
 	}
 
 	public static class SubContext extends ParserRuleContext {
-		public TerminalNode SUB() { return getToken(mipsgrammarParser.SUB, 0); }
-		public List<TerminalNode> REGISTER() { return getTokens(mipsgrammarParser.REGISTER); }
+		public TerminalNode SUB() { return getToken(MipsParser.SUB, 0); }
+		public List<TerminalNode> REGISTER() { return getTokens(MipsParser.REGISTER); }
 		public TerminalNode REGISTER(int i) {
-			return getToken(mipsgrammarParser.REGISTER, i);
+			return getToken(MipsParser.REGISTER, i);
 		}
 		public SubContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
@@ -2193,11 +2376,16 @@ public class mipsgrammarParser extends Parser {
 		@Override public int getRuleIndex() { return RULE_sub; }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof mipsgrammarListener ) ((mipsgrammarListener)listener).enterSub(this);
+			if ( listener instanceof MipsListener ) ((MipsListener)listener).enterSub(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof mipsgrammarListener ) ((mipsgrammarListener)listener).exitSub(this);
+			if ( listener instanceof MipsListener ) ((MipsListener)listener).exitSub(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof MipsVisitor ) return ((MipsVisitor<? extends T>)visitor).visitSub(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -2229,10 +2417,10 @@ public class mipsgrammarParser extends Parser {
 	}
 
 	public static class SubuContext extends ParserRuleContext {
-		public TerminalNode SUBU() { return getToken(mipsgrammarParser.SUBU, 0); }
-		public List<TerminalNode> REGISTER() { return getTokens(mipsgrammarParser.REGISTER); }
+		public TerminalNode SUBU() { return getToken(MipsParser.SUBU, 0); }
+		public List<TerminalNode> REGISTER() { return getTokens(MipsParser.REGISTER); }
 		public TerminalNode REGISTER(int i) {
-			return getToken(mipsgrammarParser.REGISTER, i);
+			return getToken(MipsParser.REGISTER, i);
 		}
 		public SubuContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
@@ -2240,11 +2428,16 @@ public class mipsgrammarParser extends Parser {
 		@Override public int getRuleIndex() { return RULE_subu; }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof mipsgrammarListener ) ((mipsgrammarListener)listener).enterSubu(this);
+			if ( listener instanceof MipsListener ) ((MipsListener)listener).enterSubu(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof mipsgrammarListener ) ((mipsgrammarListener)listener).exitSubu(this);
+			if ( listener instanceof MipsListener ) ((MipsListener)listener).exitSubu(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof MipsVisitor ) return ((MipsVisitor<? extends T>)visitor).visitSubu(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -2276,25 +2469,30 @@ public class mipsgrammarParser extends Parser {
 	}
 
 	public static class SwContext extends ParserRuleContext {
-		public TerminalNode SW() { return getToken(mipsgrammarParser.SW, 0); }
-		public List<TerminalNode> REGISTER() { return getTokens(mipsgrammarParser.REGISTER); }
+		public TerminalNode SW() { return getToken(MipsParser.SW, 0); }
+		public List<TerminalNode> REGISTER() { return getTokens(MipsParser.REGISTER); }
 		public TerminalNode REGISTER(int i) {
-			return getToken(mipsgrammarParser.REGISTER, i);
+			return getToken(MipsParser.REGISTER, i);
 		}
-		public TerminalNode INT() { return getToken(mipsgrammarParser.INT, 0); }
-		public TerminalNode LPAREN() { return getToken(mipsgrammarParser.LPAREN, 0); }
-		public TerminalNode RPAREN() { return getToken(mipsgrammarParser.RPAREN, 0); }
+		public TerminalNode INT() { return getToken(MipsParser.INT, 0); }
+		public TerminalNode LPAREN() { return getToken(MipsParser.LPAREN, 0); }
+		public TerminalNode RPAREN() { return getToken(MipsParser.RPAREN, 0); }
 		public SwContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
 		@Override public int getRuleIndex() { return RULE_sw; }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof mipsgrammarListener ) ((mipsgrammarListener)listener).enterSw(this);
+			if ( listener instanceof MipsListener ) ((MipsListener)listener).enterSw(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof mipsgrammarListener ) ((mipsgrammarListener)listener).exitSw(this);
+			if ( listener instanceof MipsListener ) ((MipsListener)listener).exitSw(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof MipsVisitor ) return ((MipsVisitor<? extends T>)visitor).visitSw(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -2330,18 +2528,23 @@ public class mipsgrammarParser extends Parser {
 	}
 
 	public static class SyscallContext extends ParserRuleContext {
-		public TerminalNode SYSCALL() { return getToken(mipsgrammarParser.SYSCALL, 0); }
+		public TerminalNode SYSCALL() { return getToken(MipsParser.SYSCALL, 0); }
 		public SyscallContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
 		@Override public int getRuleIndex() { return RULE_syscall; }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof mipsgrammarListener ) ((mipsgrammarListener)listener).enterSyscall(this);
+			if ( listener instanceof MipsListener ) ((MipsListener)listener).enterSyscall(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof mipsgrammarListener ) ((mipsgrammarListener)listener).exitSyscall(this);
+			if ( listener instanceof MipsListener ) ((MipsListener)listener).exitSyscall(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof MipsVisitor ) return ((MipsVisitor<? extends T>)visitor).visitSyscall(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -2367,10 +2570,10 @@ public class mipsgrammarParser extends Parser {
 	}
 
 	public static class XorContext extends ParserRuleContext {
-		public TerminalNode XOR() { return getToken(mipsgrammarParser.XOR, 0); }
-		public List<TerminalNode> REGISTER() { return getTokens(mipsgrammarParser.REGISTER); }
+		public TerminalNode XOR() { return getToken(MipsParser.XOR, 0); }
+		public List<TerminalNode> REGISTER() { return getTokens(MipsParser.REGISTER); }
 		public TerminalNode REGISTER(int i) {
-			return getToken(mipsgrammarParser.REGISTER, i);
+			return getToken(MipsParser.REGISTER, i);
 		}
 		public XorContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
@@ -2378,11 +2581,16 @@ public class mipsgrammarParser extends Parser {
 		@Override public int getRuleIndex() { return RULE_xor; }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof mipsgrammarListener ) ((mipsgrammarListener)listener).enterXor(this);
+			if ( listener instanceof MipsListener ) ((MipsListener)listener).enterXor(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof mipsgrammarListener ) ((mipsgrammarListener)listener).exitXor(this);
+			if ( listener instanceof MipsListener ) ((MipsListener)listener).exitXor(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof MipsVisitor ) return ((MipsVisitor<? extends T>)visitor).visitXor(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -2414,23 +2622,28 @@ public class mipsgrammarParser extends Parser {
 	}
 
 	public static class XoriContext extends ParserRuleContext {
-		public TerminalNode XORI() { return getToken(mipsgrammarParser.XORI, 0); }
-		public List<TerminalNode> REGISTER() { return getTokens(mipsgrammarParser.REGISTER); }
+		public TerminalNode XORI() { return getToken(MipsParser.XORI, 0); }
+		public List<TerminalNode> REGISTER() { return getTokens(MipsParser.REGISTER); }
 		public TerminalNode REGISTER(int i) {
-			return getToken(mipsgrammarParser.REGISTER, i);
+			return getToken(MipsParser.REGISTER, i);
 		}
-		public TerminalNode INT() { return getToken(mipsgrammarParser.INT, 0); }
+		public TerminalNode INT() { return getToken(MipsParser.INT, 0); }
 		public XoriContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
 		@Override public int getRuleIndex() { return RULE_xori; }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof mipsgrammarListener ) ((mipsgrammarListener)listener).enterXori(this);
+			if ( listener instanceof MipsListener ) ((MipsListener)listener).enterXori(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof mipsgrammarListener ) ((mipsgrammarListener)listener).exitXori(this);
+			if ( listener instanceof MipsListener ) ((MipsListener)listener).exitXori(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof MipsVisitor ) return ((MipsVisitor<? extends T>)visitor).visitXori(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -2462,23 +2675,28 @@ public class mipsgrammarParser extends Parser {
 	}
 
 	public static class OriContext extends ParserRuleContext {
-		public TerminalNode ORI() { return getToken(mipsgrammarParser.ORI, 0); }
-		public List<TerminalNode> REGISTER() { return getTokens(mipsgrammarParser.REGISTER); }
+		public TerminalNode ORI() { return getToken(MipsParser.ORI, 0); }
+		public List<TerminalNode> REGISTER() { return getTokens(MipsParser.REGISTER); }
 		public TerminalNode REGISTER(int i) {
-			return getToken(mipsgrammarParser.REGISTER, i);
+			return getToken(MipsParser.REGISTER, i);
 		}
-		public TerminalNode INT() { return getToken(mipsgrammarParser.INT, 0); }
+		public TerminalNode INT() { return getToken(MipsParser.INT, 0); }
 		public OriContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
 		@Override public int getRuleIndex() { return RULE_ori; }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof mipsgrammarListener ) ((mipsgrammarListener)listener).enterOri(this);
+			if ( listener instanceof MipsListener ) ((MipsListener)listener).enterOri(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof mipsgrammarListener ) ((mipsgrammarListener)listener).exitOri(this);
+			if ( listener instanceof MipsListener ) ((MipsListener)listener).exitOri(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof MipsVisitor ) return ((MipsVisitor<? extends T>)visitor).visitOri(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 

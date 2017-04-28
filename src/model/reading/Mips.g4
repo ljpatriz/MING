@@ -1,4 +1,4 @@
-grammar mipsgrammar;
+grammar Mips;
 
 /*
  * Parser Rules
