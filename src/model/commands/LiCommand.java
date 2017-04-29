@@ -8,10 +8,10 @@ import model.Register;
 /**
  * Created by larrypatrizio on 4/25/17.
  */
-public class LoadImmediateCommand extends Command{
+public class LiCommand extends Command{
     Register dst;
     int immediate;
-    public LoadImmediateCommand(Core core, Register dst, int immediate) {
+    public LiCommand(Core core, Register dst, int immediate) {
         super(core);
         this.dst = dst;
         this.immediate = immediate;

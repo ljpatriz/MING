@@ -1,5 +1,5 @@
 import model.Core;
-import model.commands.LoadImmediateCommand;
+import model.commands.LiCommand;
 import model.commands.MoveCommand;
 import org.junit.Assert;
 import org.junit.Before;
@@ -25,8 +25,8 @@ public class CommandTest {
 
     @Test
     public void testLoadImmediateCommand() throws Exception {
-        LoadImmediateCommand loadImmediateCommand = new LoadImmediateCommand("$v0 5",testCore);
-        loadImmediateCommand.apply();
+        LiCommand liCommand = new LiCommand("$v0 5",testCore);
+        liCommand.apply();
         Assert.assertEquals(testCore.getRegister(2).getValue(),5);
     }
 

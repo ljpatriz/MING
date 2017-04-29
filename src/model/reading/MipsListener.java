@@ -290,6 +290,16 @@ public interface MipsListener extends ParseTreeListener {
 	 */
 	void exitLhu(MipsParser.LhuContext ctx);
 	/**
+	 * Enter a parse tree produced by {@link MipsParser#li}.
+	 * @param ctx the parse tree
+	 */
+	void enterLi(MipsParser.LiContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link MipsParser#li}.
+	 * @param ctx the parse tree
+	 */
+	void exitLi(MipsParser.LiContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link MipsParser#lw}.
 	 * @param ctx the parse tree
 	 */
@@ -299,6 +309,16 @@ public interface MipsListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitLw(MipsParser.LwContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link MipsParser#move}.
+	 * @param ctx the parse tree
+	 */
+	void enterMove(MipsParser.MoveContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link MipsParser#move}.
+	 * @param ctx the parse tree
+	 */
+	void exitMove(MipsParser.MoveContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link MipsParser#movn}.
 	 * @param ctx the parse tree
@@ -449,4 +469,14 @@ public interface MipsListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitOri(MipsParser.OriContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link MipsParser#label}.
+	 * @param ctx the parse tree
+	 */
+	void enterLabel(MipsParser.LabelContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link MipsParser#label}.
+	 * @param ctx the parse tree
+	 */
+	void exitLabel(MipsParser.LabelContext ctx);
 }

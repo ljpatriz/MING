@@ -14,6 +14,6 @@ public class JrCommand extends Command {
     }
 
     public void apply(){
-        core.setCommandLocation(addr);
+        core.setPC(addr);
     }
 }

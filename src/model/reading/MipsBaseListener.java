@@ -354,6 +354,18 @@ public class MipsBaseListener implements MipsListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterLi(MipsParser.LiContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitLi(MipsParser.LiContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterLw(MipsParser.LwContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -361,6 +373,18 @@ public class MipsBaseListener implements MipsListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitLw(MipsParser.LwContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterMove(MipsParser.MoveContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitMove(MipsParser.MoveContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -541,6 +565,18 @@ public class MipsBaseListener implements MipsListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitOri(MipsParser.OriContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterLabel(MipsParser.LabelContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitLabel(MipsParser.LabelContext ctx) { }
 
 	/**
 	 * {@inheritDoc}

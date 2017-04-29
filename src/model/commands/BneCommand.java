@@ -18,6 +18,6 @@ public class BneCommand extends Command {
 
     public void apply(){
         if(src.getValue() != src2.getValue())
-            core.setCommandLocation(target);
+            core.jumpToLabel(target);
     }
 }

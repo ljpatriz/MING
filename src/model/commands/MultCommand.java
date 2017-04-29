@@ -7,7 +7,7 @@ import model.Register;
  * Created by ncameron on 4/27/2017.
  */
 public class MultCommand extends Command {
-    Register dest;
+    //// TODO: 4/28/2017 figure out how to represent HI and LO registers
     Register src;
     Register src2;
     //TODO differentiate between Mul nd Mult
@@ -41,13 +41,12 @@ public class MultCommand extends Command {
           /                 |             -'
      */
 
-    public MultCommand(Core core, Register dest, Register src, Register src2) {
+    public MultCommand(Core core, Register src, Register src2) {
         super(core);
-        this.dest = dest;
         this.src = src;
         this.src2 = src2;
     }
 
     public void apply(){
-        dest.setValue(src.getValue() * src2.getValue());
+        //// TODO: 4/28/2017 do things with HI and LO
     }}

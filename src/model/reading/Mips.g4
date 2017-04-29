@@ -10,7 +10,10 @@ package model.reading;
 
 program : command+ ;
 line : command ;
-command : (add | addi | addiu | addu | and | andi | beq | bgez | bgtz | blez | bltz | bne | break_ | clo | clz | div | divu | j | jal | jalr | jr | lb | lbu | lh | lhu | lw | movn | movz | mul | mult | nop | nor | or | sb | sub | subu | sw | syscall | xor | xori | ori) ;
+command : (add | addi | addiu | addu | and | andi | beq | bgez | bgtz | blez | bltz | bne | break_
+               | clo | clz | div | divu | j | jal | jalr | jr | lb | lbu | lh | lhu | lw | move
+               | movn| movz | mul | mult | nop | nor | or | sb | sub | subu | sw | syscall | xor
+               | xori | ori | label) ;
 
 
 add : ADD REGISTER REGISTER REGISTER ;
@@ -38,7 +41,9 @@ lb : LB REGISTER INT LPAREN REGISTER RPAREN ;
 lbu : LBU REGISTER INT LPAREN REGISTER RPAREN ;
 lh : LH REGISTER INT LPAREN REGISTER RPAREN ;
 lhu : LHU REGISTER INT LPAREN REGISTER RPAREN ;
+li : LI REGISTER INT ;
 lw : LW REGISTER INT LPAREN REGISTER RPAREN ;
+move : MOVE REGISTER REGISTER ;
 movn : MOVN REGISTER REGISTER REGISTER ;
 movz : MOVZ REGISTER REGISTER REGISTER ;
 mul : MUL REGISTER REGISTER REGISTER ;
@@ -54,6 +59,7 @@ syscall : SYSCALL ;
 xor : XOR REGISTER REGISTER REGISTER ;
 xori : XORI REGISTER REGISTER INT ;
 ori : ORI REGISTER REGISTER INT ;
+label : LABEL ':' ;
 
 
 
@@ -91,7 +97,9 @@ LB		: 'lb'		;
 LBU		: 'lbu'		;
 LH		: 'lh'		;
 LHU		: 'lhu'		;
+LI      : 'li'      ;
 LW		: 'lw'		;
+MOVE    : 'move'    ;
 MOVN	: 'movn'	;
 MOVZ	: 'movz'	;
 MUL		: 'mul'		;

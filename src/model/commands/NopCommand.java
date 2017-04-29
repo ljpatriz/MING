@@ -9,4 +9,7 @@ public class NopCommand extends Command {
     public NopCommand(Core core) {
         super(core);
     }
+
+    @Override
+    public void apply() {}
 }

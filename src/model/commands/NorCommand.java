@@ -9,7 +9,7 @@ import model.Register;
 public class NorCommand extends Command {
     Register dest;
     Register src;
-    Register src2; //TODO how to do not or
+    Register src2;
     public NorCommand(Core core, Register dest, Register src, Register src2) {
         super(core);
         this.dest = dest;
@@ -18,6 +18,6 @@ public class NorCommand extends Command {
     }
 
     public void apply(){
-        dest.setValue(src.getValue() | src2.getValue());
+        dest.setValue(~(src.getValue() | src2.getValue()));
     }
 }

@@ -7,6 +7,7 @@ import model.Register;
  * Created by ncameron on 4/27/2017.
  */
 public class MulCommand extends Command {
+    //// TODO: 4/28/2017 figure out how to represent HI and LO registers
     Register dest;
     Register src;
     Register src2;
@@ -18,6 +19,14 @@ public class MulCommand extends Command {
     }
 
     public void apply(){
-        dest.setValue(src.getValue() * src2.getValue());
+        long srcVal = src.getValue();
+        long src2Val = src2.getValue();
+        long result = srcVal * src2Val;
+
+        int hiBits = (int) (result >> 32);
+        int loBits = (int) (result);
+
+        //// TODO: 4/28/2017 set HI to hiBits and LO to loBits
+        dest.setValue(loBits);
     }
 }

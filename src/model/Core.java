@@ -1,6 +1,5 @@
 package model;
 
-import javafx.scene.layout.Region;
 import model.util.Util;
 import model.commands.Command;
 import java.util.*;
@@ -15,9 +14,14 @@ public class Core {
     private List<Integer> memory = new ArrayList<>();
 
     private List<Command> commandList = new ArrayList<>();
-    private int commandLocation;
+    private int programCounter;
+    private int lo;
+    private int hi;
     private Map<String, Integer> labelMap= new HashMap<>();
     public Core(){
+        programCounter = 0;
+        lo = 0;
+        hi = 0;
         populateRegisters();
     }
 
@@ -33,7 +37,6 @@ public class Core {
         });
 
         registers.get(0).setModifiable(false);
-        registers.get(1).setModifiable(false);
 
         int registerIndex = 0;
         for (String name : registerNames) {
@@ -42,6 +45,10 @@ public class Core {
             registerIndex++;
         }
 
+    }
+
+    public List<Command> getCommandList() {
+        return commandList;
     }
 
     public Register getRegister(String registerName){
@@ -53,8 +60,6 @@ public class Core {
     }
 
     public int getStackElement() {
-        //// TODO: 4/25/2017 should we implement a max stack size?
-        //// TODO: 4/25/2017 if we want to be faithful to MIPS we should
         int spIndex = registerIndices.get("$sp");
         int sp = registers.get(spIndex).getValue();
         Util.ensureSize(stack, 1 + sp/4);
@@ -69,11 +74,23 @@ public class Core {
         return memory.set(loc, val);
     }
 
-    public void setCommandLocation(String location){
-        this.commandLocation = labelMap.get(location);
+    public void jumpToLabel(String location){
+        this.programCounter = labelMap.get(location);
     }
 
-    public void setCommandLocation(int location){
-        this.commandLocation = location;
+    public void addLabel(String label, int location){
+        labelMap.put(label, location);
+    }
+
+    public void setPC(int location){
+        this.programCounter = location;
+    }
+
+    public int getLo() {
+        return lo;
+    }
+
+    public int getHi() {
+        return hi;
     }
 }

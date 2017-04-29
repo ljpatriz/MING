@@ -9,17 +9,17 @@ import model.Register;
 public class MovzCommand extends Command {
     Register dest;
     Register src;
-    Register value;
+    Register src2;
 
-    public MovzCommand(Core core, Register dest, Register src, Register value) {
+    public MovzCommand(Core core, Register dest, Register src, Register src2) {
         super(core);
         this.dest = dest;
         this.src = src;
-        this.value = value;
+        this.src2 = src2;
     }
 
     public void apply(){
-        if(value.getValue() == 0)
+        if(src2.getValue() == 0)
             dest.setValue(src.getValue());
     }
 }

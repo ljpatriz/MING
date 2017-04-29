@@ -17,6 +17,6 @@ public class BgezCommand extends Command {
 
     public void apply(){
         if(src.getValue() >= 0)
-            core.setCommandLocation(target);
+            core.jumpToLabel(target);
     }
 }

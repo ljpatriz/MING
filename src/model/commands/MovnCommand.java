@@ -10,17 +10,17 @@ public class MovnCommand extends Command {
 
     Register dest;
     Register src;
-    Register valueNotZero;
+    Register src2;
 
-    public MovnCommand(Core core, Register dest, Register src, Register valueNotZero) {
+    public MovnCommand(Core core, Register dest, Register src, Register src2) {
         super(core);
         this.dest = dest;
         this.src = src;
-        this.valueNotZero = valueNotZero;
+        this.src2 = src2;
     }
 
     public void apply(){
-        if(valueNotZero.getValue() != 0)
+        if(src2.getValue() != 0)
             dest.setValue(src.getValue());
     }
 }
