@@ -12,7 +12,6 @@ public class DivCommand extends Command {
     //// TODO: 4/28/2017 leaving this as it is for now so you can feel ashamed
     //// TODO: 4/28/2017 this is not how div works in mips
     //// TODO: 4/28/2017 it doesn't take 3 registers, and it interacts with the HI and LO registers
-    //// TODO: 4/28/2017 which we have yet to create
 
     /*
                                                          ___,------,
@@ -50,17 +49,33 @@ public class DivCommand extends Command {
                           ,'             `---------'
                         ,'
      */
-    Register dest;
-    Register src;
+    // Preserving this for your shame
+//    Register dest;
+//    Register src;
+//    Register src2;
+//    public DivCommand(Core core, Register dest, Register src, Register src2) {
+//        super(core);
+//        this.dest = dest;
+//        this.src = src;
+//        this.src2 = src2;
+//    }
+//
+//    public void apply(){
+//        dest.setValue(src.getValue() / src2.getValue());
+//    }
+
+    Register src1;
     Register src2;
-    public DivCommand(Core core, Register dest, Register src, Register src2) {
+
+    public DivCommand(Core core, Register src1, Register src2){
         super(core);
-        this.dest = dest;
-        this.src = src;
+        this.src1 = src1;
         this.src2 = src2;
     }
 
-    public void apply(){
-        dest.setValue(src.getValue() / src2.getValue());
+    @Override
+    public void apply() {
+        core.setLoValue(src1.getValue() / src2.getValue());
+        core.setHiValue(src1.getValue() % src2.getValue());
     }
 }

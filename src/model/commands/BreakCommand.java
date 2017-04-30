@@ -7,6 +7,6 @@ import model.Core;
  */
 public class BreakCommand extends Command {
     public BreakCommand(String arguments, Core core) {
-        super(arguments, core);
+        super(core);
     }
 }

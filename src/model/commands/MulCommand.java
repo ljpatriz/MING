@@ -7,7 +7,6 @@ import model.Register;
  * Created by ncameron on 4/27/2017.
  */
 public class MulCommand extends Command {
-    //// TODO: 4/28/2017 figure out how to represent HI and LO registers
     Register dest;
     Register src;
     Register src2;

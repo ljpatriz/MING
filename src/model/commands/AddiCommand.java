@@ -17,5 +17,6 @@ public class AddiCommand extends Command {
 
     public void apply(){
         dest.setValue(src.getValue() + immediate);
+        System.out.println(dest.getValue());
     }
 }

@@ -11,7 +11,7 @@ public class Core {
     private Map<String, Integer> registerIndices = new HashMap<>();
     private List<Register> registers = new ArrayList<>();
     private ArrayList<Integer> stack = new ArrayList<>();
-    private List<Integer> memory = new ArrayList<>();
+    private ArrayList<Integer> memory = new ArrayList<>();
 
     private List<Command> commandList = new ArrayList<>();
     private Register programCounter;
@@ -28,6 +28,7 @@ public class Core {
         programCounter = new Register("$pc", 0, true);
         lo = new Register("$lo", 0, true);
         hi = new Register("$hi", 0, true);
+
 
 
         List<String> registerNames = Arrays.asList("$zero", "$at", "$v0", "$v1", "$a0", "$a1",
@@ -69,11 +70,12 @@ public class Core {
     }
 
     public int getMemoryVal(int loc){
-        return memory.get(loc);
+        return memory.get(loc/4);
     }
 
     public int setMemoryVal(int loc, int val){
-        return memory.set(loc, val);
+        Util.ensureSize(memory, 1 + loc/4);
+        return memory.set(loc/4, val);
     }
 
     public void jumpToLabel(String location){
@@ -89,6 +91,14 @@ public class Core {
             //// TODO: 4/30/2017 error of some sort
         }
         this.programCounter.setValue(address/4);
+    }
+
+    public void runCommands(){
+        for(programCounter.getValue();
+            programCounter.getValue()<commandList.size();
+            programCounter.setValue(programCounter.getValue()+1)){
+            commandList.get(programCounter.getValue()).apply();
+        }
     }
 
     public int getPC() {
@@ -109,6 +119,10 @@ public class Core {
 
     public void setHiValue(int value) {
         hi.setValue(value);
+    }
+
+    public void setCommandList(List<Command> commandList) {
+        this.commandList = commandList;
     }
 
 

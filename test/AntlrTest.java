@@ -36,10 +36,25 @@ public class AntlrTest {
     }
 
     @Test
+    public void jgiroehg() throws Exception {
+        String larry = "sucks";
+        System.out.println(larry.getBytes());
+        //System.out.println(Byte.valueOf(larry).intValue());
+        for (int i = 0; i < larry.getBytes().length; i++) {
+            System.out.println(larry.getBytes()[i]);
+        }
+        System.out.println();
+
+
+        String larrysucks = new String(larry.getBytes());
+        System.out.println(larrysucks);
+        //System.out.println(String.valueOf(Byte.valueOf(larry).intValue()));
+    }
+
+    @Test
     public void testParser() throws Exception {
         MipsParser.ProgramContext programContext = mipsParser.program();
         ParseTreeListener listener = new MipsCommandListener(core);
-        //mipsParser.addParseListener(listener);
         ParseTreeWalker walker = new ParseTreeWalker();
         walker.walk(listener, programContext);
     }

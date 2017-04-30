@@ -99,8 +99,7 @@ public class View {
             @Override
             public void handle(MouseEvent event) {
                 System.out.println("Run");
-                //run code
-                //ModelController.run()
+                handleRun();
             }
         });
         menuRun.setGraphic(menuRunLabel);
@@ -216,6 +215,10 @@ public class View {
                 System.out.println("IOException Error");
             }
         }
+    }
+
+    private void handleRun(){
+
     }
 
 }

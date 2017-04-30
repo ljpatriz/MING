@@ -7,6 +7,7 @@ import org.antlr.v4.runtime.ParserRuleContext;
 import org.antlr.v4.runtime.tree.ErrorNode;
 import org.antlr.v4.runtime.tree.TerminalNode;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -21,6 +22,7 @@ public class MipsCommandListener extends MipsBaseListener {
     public MipsCommandListener(Core core) {
         location = 0;
         this.core = core;
+        commands = new ArrayList<>();
     }
 
 
@@ -32,7 +34,10 @@ public class MipsCommandListener extends MipsBaseListener {
 
     @Override public void enterProgram(MipsParser.ProgramContext ctx) { }
     
-    @Override public void exitProgram(MipsParser.ProgramContext ctx) { }
+    @Override public void exitProgram(MipsParser.ProgramContext ctx) {
+        commands.add(new NopCommand(core));
+        core.setCommandList(commands);
+    }
     
     @Override public void enterLine(MipsParser.LineContext ctx) { }
     
@@ -123,7 +128,7 @@ public class MipsCommandListener extends MipsBaseListener {
     }
 
     @Override public void enterBreak_(MipsParser.Break_Context ctx) {
-        commands.add(new BreakCommand());
+        commands.add(new BreakCommand("blah",core));
     }
 
     @Override public void enterClo(MipsParser.CloContext ctx) {
