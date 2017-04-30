@@ -4,7 +4,9 @@ package model;
  * Created by larrypatrizio on 4/25/17.
  */
 public class Register {
+    //// TODO: 4/29/2017 storing the name is data duplication and useless
     private String registerName;
+    //// TODO: 4/29/2017 why is register an object in the first place? Should it be?
     private int value;
     private boolean modifiable;
 

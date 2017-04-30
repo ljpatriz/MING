@@ -26,7 +26,8 @@ public class MulCommand extends Command {
         int hiBits = (int) (result >> 32);
         int loBits = (int) (result);
 
-        //// TODO: 4/28/2017 set HI to hiBits and LO to loBits
+        core.setHiValue(hiBits);
+        core.setLoValue(loBits);
         dest.setValue(loBits);
     }
 }

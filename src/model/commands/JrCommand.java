@@ -1,19 +1,20 @@
 package model.commands;
 
 import model.Core;
+import model.Register;
 
 /**
  * Created by ncameron on 4/27/2017.
  */
 public class JrCommand extends Command {
-    int addr;
+    Register newAddress;
 
-    public JrCommand(Core core, int addr) {
+    public JrCommand(Core core, Register newAddress) {
         super(core);
-        this.addr = addr;
+        this.newAddress = newAddress;
     }
 
     public void apply(){
-        core.setPC(addr);
+        core.setPC(newAddress.getValue());
     }
 }

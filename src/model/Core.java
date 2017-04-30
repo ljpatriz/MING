@@ -14,27 +14,28 @@ public class Core {
     private List<Integer> memory = new ArrayList<>();
 
     private List<Command> commandList = new ArrayList<>();
-    private int programCounter;
-    private int lo;
-    private int hi;
+    private Register programCounter;
+    private Register lo;
+    private Register hi;
     private Map<String, Integer> labelMap= new HashMap<>();
+
     public Core(){
-        programCounter = 0;
-        lo = 0;
-        hi = 0;
         populateRegisters();
     }
 
 
     public void populateRegisters() {
+        programCounter = new Register("$pc", 0, true);
+        lo = new Register("$lo", 0, true);
+        hi = new Register("$hi", 0, true);
+
+
         List<String> registerNames = Arrays.asList("$zero", "$at", "$v0", "$v1", "$a0", "$a1",
                 "$a2", "$a3", "$t0", "$t1", "$t2", "$t3", "$t4", "$t5", "$t6", "$t7", "$s0", "$s1",
                 "$s2", "$s3", "$s4", "$s5", "$s6", "$s7", "$t8", "$t9", "$k0", "$k1", "$gp", "$sp",
                 "$fp", "$ra");
 
-        registerNames.forEach( s -> {
-            registers.add(new Register(s, 0, true));
-        });
+        registerNames.forEach( s -> registers.add(new Register(s, 0, true)));
 
         registers.get(0).setModifiable(false);
 
@@ -44,6 +45,7 @@ public class Core {
             registerIndices.put(String.format("$%d", registerIndex), registerIndex);
             registerIndex++;
         }
+
 
     }
 
@@ -75,22 +77,40 @@ public class Core {
     }
 
     public void jumpToLabel(String location){
-        this.programCounter = labelMap.get(location);
+        this.programCounter.setValue(labelMap.get(location));
     }
 
     public void addLabel(String label, int location){
         labelMap.put(label, location);
     }
 
-    public void setPC(int location){
-        this.programCounter = location;
+    public void setPC(int address){
+        if (address % 4 != 0) {
+            //// TODO: 4/30/2017 error of some sort
+        }
+        this.programCounter.setValue(address/4);
     }
 
-    public int getLo() {
-        return lo;
+    public int getPC() {
+        return 4*programCounter.getValue();
     }
 
-    public int getHi() {
-        return hi;
+    public int getLoValue() {
+        return lo.getValue();
     }
+
+    public int getHiValue() {
+        return hi.getValue();
+    }
+
+    public void setLoValue(int value) {
+        lo.setValue(value);
+    }
+
+    public void setHiValue(int value) {
+        hi.setValue(value);
+    }
+
+
+
 }
