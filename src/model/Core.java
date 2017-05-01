@@ -62,6 +62,7 @@ public class Core {
         return registers.get(index);
     }
 
+    //// TODO: 4/30/2017 stack doesn't work right now
     public int getStackElement() {
         int spIndex = registerIndices.get("$sp");
         int sp = registers.get(spIndex).getValue();

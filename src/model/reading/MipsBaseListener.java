@@ -378,6 +378,30 @@ public class MipsBaseListener implements MipsListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterMfhi(MipsParser.MfhiContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitMfhi(MipsParser.MfhiContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterMflo(MipsParser.MfloContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitMflo(MipsParser.MfloContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterMove(MipsParser.MoveContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -474,6 +498,18 @@ public class MipsBaseListener implements MipsListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterOri(MipsParser.OriContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitOri(MipsParser.OriContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterSb(MipsParser.SbContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -553,18 +589,6 @@ public class MipsBaseListener implements MipsListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitXori(MipsParser.XoriContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void enterOri(MipsParser.OriContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitOri(MipsParser.OriContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *

@@ -4,6 +4,7 @@ import model.Core;
 import model.Register;
 import model.commands.*;
 import org.antlr.v4.runtime.ParserRuleContext;
+import org.antlr.v4.runtime.misc.IntegerList;
 import org.antlr.v4.runtime.tree.ErrorNode;
 import org.antlr.v4.runtime.tree.TerminalNode;
 
@@ -66,10 +67,17 @@ public class MipsCommandListener extends MipsBaseListener {
     }
 
     @Override public void enterAddiu(MipsParser.AddiuContext ctx) {
+        List<Register> registers = getRegisters(ctx.REGISTER().stream());
+        int immediate = Integer.valueOf(ctx.INT().getSymbol().getText());
 
+        commands.add(new AddiuCommand(core, registers.get(0), registers.get(1), immediate));
     }
 
-    @Override public void enterAddu(MipsParser.AdduContext ctx) { }
+    @Override public void enterAddu(MipsParser.AdduContext ctx) {
+        List<Register> registers = getRegisters(ctx.REGISTER().stream());
+
+        commands.add(new AdduCommand(core, registers.get(0), registers.get(1), registers.get(2)));
+    }
 
     @Override public void enterAnd(MipsParser.AndContext ctx) {
         List<Register> registers = getRegisters(ctx.REGISTER().stream());
@@ -93,7 +101,7 @@ public class MipsCommandListener extends MipsBaseListener {
 
     @Override public void enterBgez(MipsParser.BgezContext ctx) {
         String label = ctx.LABEL().getText();
-        Register register = core.getRegister(ctx.REGISTER().getText());
+        Register register = core.getRegister(ctx.REGISTER().getSymbol().getText());
 
         commands.add(new BgezCommand(core, register, label));
 
@@ -101,21 +109,21 @@ public class MipsCommandListener extends MipsBaseListener {
 
     @Override public void enterBgtz(MipsParser.BgtzContext ctx) {
         String label = ctx.LABEL().getText();
-        Register register = core.getRegister(ctx.REGISTER().getText());
+        Register register = core.getRegister(ctx.REGISTER().getSymbol().getText());
 
         commands.add(new BgtzCommand(core, register, label));
     }
 
     @Override public void enterBlez(MipsParser.BlezContext ctx) {
         String label = ctx.LABEL().getText();
-        Register register = core.getRegister(ctx.REGISTER().getText());
+        Register register = core.getRegister(ctx.REGISTER().getSymbol().getText());
 
         commands.add(new BlezCommand(core, register, label));
     }
     
     @Override public void enterBltz(MipsParser.BltzContext ctx) {
         String label = ctx.LABEL().getText();
-        Register register = core.getRegister(ctx.REGISTER().getText());
+        Register register = core.getRegister(ctx.REGISTER().getSymbol().getText());
 
         commands.add(new BltzCommand(core, register, label));
     }
@@ -143,9 +151,17 @@ public class MipsCommandListener extends MipsBaseListener {
         commands.add(new ClzCommand(core, registers.get(0), registers.get(1)));
     }
     
-    @Override public void enterDiv(MipsParser.DivContext ctx) { }
+    @Override public void enterDiv(MipsParser.DivContext ctx) {
+        List<Register> registers = getRegisters(ctx.REGISTER().stream());
+
+        commands.add(new DivCommand(core, registers.get(0), registers.get(1)));
+    }
     
-    @Override public void enterDivu(MipsParser.DivuContext ctx) { }
+    @Override public void enterDivu(MipsParser.DivuContext ctx) {
+        List<Register> registers = getRegisters(ctx.REGISTER().stream());
+
+        commands.add(new DivuCommand(core, registers.get(0), registers.get(1)));
+    }
     
     @Override public void enterJ(MipsParser.JContext ctx) {
         String label = ctx.LABEL().getText();
@@ -159,9 +175,17 @@ public class MipsCommandListener extends MipsBaseListener {
         commands.add(new JalCommand(core, label, location));
     }
     
-    @Override public void enterJalr(MipsParser.JalrContext ctx) { }
+    @Override public void enterJalr(MipsParser.JalrContext ctx) {
+        List<Register> registers = getRegisters(ctx.REGISTER().stream());
+
+        commands.add(new JalrCommand(core, registers.get(0), registers.get(1)));
+    }
     
-    @Override public void enterJr(MipsParser.JrContext ctx) { }
+    @Override public void enterJr(MipsParser.JrContext ctx) {
+        Register register = core.getRegister(ctx.REGISTER().getSymbol().getText());
+
+        commands.add(new JrCommand(core, register));
+    }
     
     @Override public void enterLb(MipsParser.LbContext ctx) { }
 
@@ -172,15 +196,19 @@ public class MipsCommandListener extends MipsBaseListener {
     @Override public void enterLhu(MipsParser.LhuContext ctx) { }
 
     @Override public void enterLi(MipsParser.LiContext ctx) {
-        Register register = core.getRegister(ctx.REGISTER().getText());
-        int immediate = Integer.valueOf(ctx.INT().getText());
+        Register register = core.getRegister(ctx.REGISTER().getSymbol().getText());
+        int immediate = Integer.valueOf(ctx.INT().getSymbol().getText());
 
         commands.add(new LiCommand(core, register, immediate));
     }
 
-    @Override public void enterLw(MipsParser.LwContext ctx) { }
+    @Override public void enterLw(MipsParser.LwContext ctx) {
+        List<Register> registers = getRegisters(ctx.REGISTER().stream());
+        int offset = Integer.valueOf(ctx.INT().getSymbol().getText());
 
-    //// TODO: 4/28/2017 add Move to the parser
+        commands.add(new LwCommand(core, registers.get(0), registers.get(1), offset));
+    }
+
     @Override public void enterMove(MipsParser.MoveContext ctx) {
         List<Register> registers = getRegisters(ctx.REGISTER().stream());
 
@@ -229,13 +257,23 @@ public class MipsCommandListener extends MipsBaseListener {
     
     @Override public void enterSb(MipsParser.SbContext ctx) { }
     
-    @Override public void enterSub(MipsParser.SubContext ctx) { }
+    @Override public void enterSub(MipsParser.SubContext ctx) {
+        List<Register> registers = getRegisters(ctx.REGISTER().stream());
+
+        commands.add(new SubCommand(core, registers.get(0), registers.get(1), registers.get(2)));
+    }
     
-    @Override public void enterSubu(MipsParser.SubuContext ctx) { }
+    @Override public void enterSubu(MipsParser.SubuContext ctx) {
+        List<Register> registers = getRegisters(ctx.REGISTER().stream());
+
+        commands.add(new SubuCommand(core, registers.get(0), registers.get(1), registers.get(2)));
+    }
     
     @Override public void enterSw(MipsParser.SwContext ctx) { }
     
-    @Override public void enterSyscall(MipsParser.SyscallContext ctx) { }
+    @Override public void enterSyscall(MipsParser.SyscallContext ctx) {
+        commands.add(new SyscallCommand(core));
+    }
     
     @Override public void enterXor(MipsParser.XorContext ctx) {
         List<Register> registers = getRegisters(ctx.REGISTER().stream());

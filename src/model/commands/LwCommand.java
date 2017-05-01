@@ -8,13 +8,15 @@ import model.Register;
  */
 public class LwCommand extends Command {
     Register dst;
-    int memLocation;
-    public LwCommand(Core core, Register dst, int memLocation) {
+    Register src;
+    int offset;
+    public LwCommand(Core core, Register dst, Register src, int offset) {
         super(core);
         this.dst = dst;
-        this.memLocation = memLocation;
+        this.src = src;
+        this.offset = offset;
     }
     public void apply(){
-        dst.setValue(core.getMemoryVal(memLocation));
+        dst.setValue(core.getMemoryVal(offset+src.getValue()));
     }
 }
