@@ -13,7 +13,10 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-
+/**
+ * MipsCommandListener traverses the parse tree in association with an Antlr Walker, generating
+ * the commands for the associated parse tree nodes.
+ */
 public class MipsCommandListener extends MipsBaseListener {
 
     private Core core;
@@ -209,6 +212,18 @@ public class MipsCommandListener extends MipsBaseListener {
         commands.add(new LwCommand(core, registers.get(0), registers.get(1), offset));
     }
 
+    @Override public void enterMfhi(MipsParser.MfhiContext ctx) {
+        Register register = core.getRegister(ctx.REGISTER().getSymbol().getText());
+
+        commands.add(new MfhiCommand(core, register));
+    }
+
+    @Override public void enterMflo(MipsParser.MfloContext ctx) {
+        Register register = core.getRegister(ctx.REGISTER().getSymbol().getText());
+
+        commands.add(new MfloCommand(core, register));
+    }
+
     @Override public void enterMove(MipsParser.MoveContext ctx) {
         List<Register> registers = getRegisters(ctx.REGISTER().stream());
 
@@ -269,7 +284,12 @@ public class MipsCommandListener extends MipsBaseListener {
         commands.add(new SubuCommand(core, registers.get(0), registers.get(1), registers.get(2)));
     }
     
-    @Override public void enterSw(MipsParser.SwContext ctx) { }
+    @Override public void enterSw(MipsParser.SwContext ctx) {
+        List<Register> registers = getRegisters(ctx.REGISTER().stream());
+        int offset = Integer.valueOf(ctx.INT().getSymbol().getText());
+
+        commands.add(new SwCommand(core, registers.get(0), registers.get(1), offset));
+    }
     
     @Override public void enterSyscall(MipsParser.SyscallContext ctx) {
         commands.add(new SyscallCommand(core));
