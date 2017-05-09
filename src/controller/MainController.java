@@ -2,6 +2,7 @@ package controller;
 
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import model.commands.Command;
 import org.antlr.runtime.CharStream;
 import org.antlr.v4.runtime.CharStreams;
 import view.View;
@@ -9,6 +10,7 @@ import view.View;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.Iterator;
 import java.util.Scanner;
 
 /**
@@ -69,6 +71,14 @@ public class MainController {
     }
 
     public void handleRun(){
-        modelController.run(CharStreams.fromString(view.getTextArea().textProperty().getValue()));
+        modelController.assemble(view.getUserText());
+        Iterator<Command> it = modelController.getCommandIterator();
+
+        while (it.hasNext()) {
+            Command command = it.next();
+            command.apply();
+            view.updateRegisters(modelController.getRegisterValues());
+            System.out.println("did a command");
+        }
     }
 }

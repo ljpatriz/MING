@@ -18,5 +18,6 @@ public class LiCommand extends Command{
     }
     public void apply(){
         dst.setValue(immediate);
+        System.out.println("set " + dst.getRegisterName() + " to: " + dst.getValue());
     }
 }

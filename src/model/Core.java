@@ -3,6 +3,7 @@ package model;
 import model.util.Util;
 import model.commands.Command;
 import java.util.*;
+import java.util.stream.Collectors;
 
 /**
  * The core is an abstract representation of a MIPS processor,
@@ -215,5 +216,12 @@ public class Core {
      */
     public void setCommandList(List<Command> commandList) {
         this.commandList = commandList;
+    }
+
+
+    public List<Integer> getRegisterValues() {
+        return this.registers.stream()
+                .map(r -> r.getValue())
+                .collect(Collectors.toList());
     }
 }

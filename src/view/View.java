@@ -8,6 +8,8 @@ import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
+import model.Register;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -31,6 +33,8 @@ public class View {
     private Scene scene;
     private Stage primaryStage;
     private MainController mainController;
+
+
 
     public void start(Stage primaryStage, MainController mainController) throws Exception{
         this.primaryStage = primaryStage;
@@ -172,9 +176,24 @@ public class View {
         registers.add(new Label(name),0,this.currentRegisterNumber+1);
         this.registers.add(new Label(String.valueOf(this.currentRegisterNumber)),1,this.currentRegisterNumber+1);
         this.currentRegisterNumber+=1;
-        registers.add(new Label("0x00000000"),2,this.currentRegisterNumber);
+
+        Label label = new Label("0x0");
+
+        registerLabels.add(label);
+        registers.add(label, 2, this.currentRegisterNumber);
     }
 
     public TextArea getTextArea(){return this.textArea;}
+
+    public String getUserText() {
+        return this.textArea.getText();
+    }
+
+    public void updateRegisters(List<Integer> newValues) {
+        for (int i = 0; i < newValues.size(); i++) {
+            this.registerLabels.get(i).setText("0x"+Integer.toHexString(newValues.get(i)));
+
+        }
+    }
 
 }

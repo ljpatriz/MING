@@ -27,7 +27,7 @@ public class Main extends Application {
         //run the text file
         CharStream stream = CharStreams.fromFileName(testDirectory+"addi.asm");
         ModelController modelController = new ModelController();
-        modelController.run(stream);
+        modelController.assemble(stream);
     }
 
 
