@@ -13,7 +13,7 @@ line : command ;
 command : (add | addi | addiu | addu | and | andi | beq | bgez | bgtz | blez | bltz | bne | break_
                | clo | clz | div | divu | j | jal | jalr | jr | lb | lbu | lh | li | lhu | lw | move
                | movn| movz | mul | mult | nop | nor | or | sb | sub | subu | sw | syscall | xor
-               | xori | ori | label | mfhi | mflo) ;
+               | xori | ori | label | mfhi | mflo ) ;
 
 
 add : ADD REGISTER REGISTER REGISTER ;
@@ -61,7 +61,7 @@ sw : SW REGISTER INT LPAREN REGISTER RPAREN ;
 syscall : SYSCALL ;
 xor : XOR REGISTER REGISTER REGISTER ;
 xori : XORI REGISTER REGISTER INT ;
-label : LABEL ':' ;
+label : LABEL;
 
 
 
@@ -130,9 +130,8 @@ ORI		: 'ori'		;
 //COMMA	: ','		;
 
 
-LABEL	: [.]+ ;
-
-
 WS :[, \t\r\n]+->skip;
 LPAREN		: '(' ;
 RPAREN		: ')' ;
+LABEL	: .+?':' ;
+
