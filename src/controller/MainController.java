@@ -10,6 +10,7 @@ import view.View;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.PrintStream;
 import java.util.Iterator;
 import java.util.Scanner;
 
@@ -28,6 +29,15 @@ public class MainController {
         view = new View();
         view.start(this.primaryStage,this);
 
+        this.setOutputs();
+
+    }
+
+
+    public void setOutputs() {
+        PrintStream out = new PrintStream(this.view.getOutputStream(), true);
+        System.setOut(out);
+        System.setErr(out);
     }
 
     public void handleSave(){

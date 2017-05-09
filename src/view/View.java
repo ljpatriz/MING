@@ -8,8 +8,9 @@ import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
-import model.Register;
 
+import java.io.IOException;
+import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -33,6 +34,7 @@ public class View {
     private Scene scene;
     private Stage primaryStage;
     private MainController mainController;
+    private OutputStream outputStream;
 
 
 
@@ -42,7 +44,7 @@ public class View {
         this.registerLabels = new ArrayList<>();
         this.mainController = mainController;
         initializeMenuBar();
-        initializeTextAreas();
+        initializeTextIO();
         initializeRegisterPane();
         organizeUIPane();
         primaryStage.setScene(this.scene);
@@ -62,12 +64,19 @@ public class View {
         this.masterGridPane.getStyleClass().add("grid");
     }
 
-    private void initializeTextAreas(){
+    private void initializeTextIO(){
         this.textArea = new TextArea();
         this.textArea.setPrefSize(700,500);
+
         this.printArea = new TextArea();
-        this.printArea.setDisable(true);
+        this.printArea.setEditable(false);
         this.printArea.setPrefSize(500,200);
+        this.outputStream = new OutputStream() {
+            @Override
+            public void write(int b) throws IOException {
+                View.this.printArea.appendText(String.valueOf((char) b));
+            }
+        };
     }
 
     private void initializeMenuBar(){
@@ -195,5 +204,11 @@ public class View {
 
         }
     }
+
+
+    public OutputStream getOutputStream() {
+        return outputStream;
+    }
+
 
 }

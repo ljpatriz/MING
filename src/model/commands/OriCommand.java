@@ -1,23 +1,23 @@
 package model.commands;
 
 import model.Core;
-import model.Register;
+
+import java.util.function.Consumer;
 
 /**
- * Created by ncameron on 4/27/2017.
+ * Created by Jacob on 26/04/17.
  */
-public class OriCommand extends Command {
-    Register dest;
-    Register src;
-    int immediate;
-    public OriCommand(Core core, Register dest, Register src, int immediate) {
-        super(core);
-        this.dest = dest;
-        this.src = src;
-        this.immediate = immediate;
-    }
-
-    public void apply(){
-        dest.setValue(src.getValue() | immediate);
+public class ORICommand extends Command{
+    ORICommand(String arguments, Core core) {
+        super(arguments, core);
+        Consumer<String> function = s -> {
+            s.replaceAll(", "," ");
+            String[] split = s.split(" ");
+            String dest = split[0];
+            String src = split[1];
+            String immediate = split[2];
+            int val = Integer.valueOf(immediate);
+            core.getRegister(dest).setValue((core.getRegister(src).getValue()|val));
+        };
     }
 }
