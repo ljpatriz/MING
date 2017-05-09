@@ -1,10 +1,13 @@
 package view;
 
 import controller.MainController;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
@@ -36,6 +39,8 @@ public class View {
     private MainController mainController;
     private OutputStream outputStream;
 
+    private StringBuilder autocompleteString;
+
 
 
     public void start(Stage primaryStage, MainController mainController) throws Exception{
@@ -43,6 +48,7 @@ public class View {
         this.primaryStage.setTitle("MING");
         this.registerLabels = new ArrayList<>();
         this.mainController = mainController;
+        autocompleteString = new StringBuilder();
         initializeMenuBar();
         initializeTextIO();
         initializeRegisterPane();
@@ -67,6 +73,15 @@ public class View {
     private void initializeTextIO(){
         this.textArea = new TextArea();
         this.textArea.setPrefSize(700,500);
+        this.textArea.setOnKeyPressed(event -> {
+            if (event.getCode().isLetterKey()) {
+                autocompleteString.append(event.getText());
+                System.out.println(autocompleteString);
+            } else {
+                autocompleteString.setLength(0);
+            }
+
+        });
 
         this.printArea = new TextArea();
         this.printArea.setEditable(false);
