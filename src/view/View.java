@@ -1,18 +1,15 @@
 package view;
 
+import controller.MainController;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
-import javafx.stage.FileChooser;
 import javafx.stage.Stage;
-
-import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
 
 //// TODO: 4/25/2017 fix resizing of window so that the text area resizes and console doesnt
 //// TODO: 4/25/2017 allow user resizing of components
@@ -33,11 +30,13 @@ public class View {
     private TextArea printArea;
     private Scene scene;
     private Stage primaryStage;
+    private MainController mainController;
 
-    public void start(Stage primaryStage) throws Exception{
+    public void start(Stage primaryStage, MainController mainController) throws Exception{
         this.primaryStage = primaryStage;
         this.primaryStage.setTitle("MING");
         this.registerLabels = new ArrayList<>();
+        this.mainController = mainController;
         initializeMenuBar();
         initializeTextAreas();
         initializeRegisterPane();
@@ -78,7 +77,7 @@ public class View {
             @Override
             public void handle(ActionEvent event) {
                 System.out.println("Save");
-                handleSave();
+                mainController.handleSave();
             }
         });
         //load
@@ -87,7 +86,7 @@ public class View {
             @Override
             public void handle(ActionEvent event) {
                 System.out.println("Load");
-                handleLoad();
+                mainController.handleLoad();
             }
         });
         menuFile.getItems().addAll(save,load);
@@ -98,8 +97,7 @@ public class View {
         menuRunLabel.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                System.out.println("Run");
-                handleRun();
+                mainController.handleRun();
             }
         });
         menuRun.setGraphic(menuRunLabel);
@@ -177,48 +175,6 @@ public class View {
         registers.add(new Label("0x00000000"),2,this.currentRegisterNumber);
     }
 
-    private void handleSave(){
-        FileChooser fileChooser = new FileChooser();
-
-        //Set extension filter
-        FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("TXT files (*.txt)", "*.txt");
-        fileChooser.getExtensionFilters().add(extFilter);
-
-        //Show save file dialog
-        File file = fileChooser.showSaveDialog(this.primaryStage);
-        if(file!=null){
-            try { //Save file
-                FileWriter fileWriter = null;
-                fileWriter = new FileWriter(file);
-                fileWriter.write(this.textArea.getText());
-                fileWriter.close();
-            } catch (IOException ex) {
-                System.out.println("IOException Error");
-            }
-        }
-    }
-
-    private void handleLoad(){
-        FileChooser fileChooser = new FileChooser();
-
-        //Set extension filter
-        FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("TXT files (*.txt)", "*.txt");
-        fileChooser.getExtensionFilters().add(extFilter);
-
-        //Show save file dialog
-        File file = fileChooser.showOpenDialog(this.primaryStage);
-        if(file!=null){
-            try { //Save file
-                String content = new Scanner(file).useDelimiter("\\Z").next();
-                this.textArea.setText(content);
-            } catch (IOException ex) {
-                System.out.println("IOException Error");
-            }
-        }
-    }
-
-    private void handleRun(){
-
-    }
+    public TextArea getTextArea(){return this.textArea;}
 
 }

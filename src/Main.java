@@ -1,3 +1,4 @@
+import controller.MainController;
 import controller.ModelController;
 import model.Core;
 import model.reading.MipsCommandListener;
@@ -20,8 +21,8 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-//        View view = new View();
-//        view.start(primaryStage);
+        MainController mainController = new MainController();
+        mainController.start(primaryStage);
     //enter the text file to run
         //run the text file
         CharStream stream = CharStreams.fromFileName(testDirectory+"addi.asm");
