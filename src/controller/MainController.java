@@ -7,6 +7,8 @@
 
 package controller;
 
+import javafx.application.Platform;
+import javafx.concurrent.Task;
 import javafx.scene.control.Alert;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
@@ -61,8 +63,8 @@ public class MainController {
      */
     public void setOutputs() {
         PrintStream out = new PrintStream(this.view.getOutputStream(), true);
-        //System.setOut(out);
-        //System.setErr(out);
+        System.setOut(out);
+        System.setErr(out);
     }
 
     /**
@@ -115,25 +117,18 @@ public class MainController {
      * Handles a run request. This is received from the view.
      */
     public void handleRun(){
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
+        modelController.assemble(view.getUserText());
+        new Thread(() -> {
+            while (modelController.canForward()) {
                 try {
-                    modelController.assemble(view.getUserText());
-                    while (modelController.canForward()) {
-                        handleStep();
-                        Thread.sleep(view.getSliderValue() * 100);
-                    }
-                } catch (
-                        InterruptedException e)
-                {
-                    viewTools.alertWindow(e);
-                } catch (Exception e)
-                {
-                    viewTools.alertWindow("Error during parsing", e);
+                    Thread.sleep(view.getSliderValue()*20); // Wait for 1 sec before updating the color
+
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
                 }
+                Platform.runLater(() -> this.handleStep());// Update on JavaFX Application Thread
             }
-        }).run();
+        }).start();
     }
 
     /**
@@ -205,6 +200,5 @@ public class MainController {
         System.out.println("updating view");
         view.updateRegisters(modelController.getRegisterValues());
         view.updateProgramCounter(modelController.getPC());
-        view.showPrimaryStage();
     }
 }

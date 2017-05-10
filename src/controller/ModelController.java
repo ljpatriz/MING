@@ -73,20 +73,12 @@ public class ModelController {
             mementoManager.saveState();
             core.executeCommand();
         }
-        else
-        {
-            throw new RuntimeException("Cannot Go Forwards");
-        }
     }
 
     public void backward(){
         if(this.canBackward()) {
             mementoManager.rewind();
             core.decrementPC();
-        }
-        else
-        {
-            throw new RuntimeException("Cannot Go Backwards");
         }
     }
 
