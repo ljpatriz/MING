@@ -87,26 +87,14 @@ public class View {
                 this.autocompleteWindow();
 
 
-                autocompleteMenu.getItems().clear();
-                List<String> commands = Arrays.asList("add","addi","addiu","addu","and","andi",
-                        "beq","bgez","bgtz","blez","bltz","bne"	,"break","clo"	,"clz"	,"div"	,"divu",
-                        "j"	,"jal"	,"jalr","jr"	,"lb"	,"lbu"	,"lh"	,"lhu"	,"li","lw"	,"mfhi",
-                        "mflo","move","movn","movz","mul","mult","nop","nor","or","sb","sub","subu",
-                        "sw","syscall","xor","xori","ori");
-                commands.stream()
-                        .filter(c -> c.startsWith(autocompleteString.toString()))
-                        .forEach(c -> autocompleteMenu.getItems().add(new MenuItem(c)));
-                autocompleteMenu.getItems().forEach(m -> m.setOnAction(event1 -> {
-                    textArea.appendText(m.getText().replace(autocompleteString.toString(), ""));
 
-                }));
-                autocompleteMenu.show(textArea, 0, 0);
                 //autocompleteMenu.
 
 
 
-            } else if (event.getCode().equals(KeyCode.DELETE)) {
+            } else if (event.getCode().equals(KeyCode.BACK_SPACE)) {
                 autocompleteString.setLength(autocompleteString.length()-1);
+                this.autocompleteWindow();
             } else {
                 autocompleteString.setLength(0);
             }
@@ -127,6 +115,20 @@ public class View {
     }
 
     private void autocompleteWindow(){
+        autocompleteMenu.getItems().clear();
+        List<String> commands = Arrays.asList("add","addi","addiu","addu","and","andi",
+                "beq","bgez","bgtz","blez","bltz","bne"	,"break","clo"	,"clz"	,"div"	,"divu",
+                "j"	,"jal"	,"jalr","jr"	,"lb"	,"lbu"	,"lh"	,"lhu"	,"li","lw"	,"mfhi",
+                "mflo","move","movn","movz","mul","mult","nop","nor","or","sb","sub","subu",
+                "sw","syscall","xor","xori","ori");
+        commands.stream()
+                .filter(c -> c.startsWith(autocompleteString.toString()))
+                .forEach(c -> autocompleteMenu.getItems().add(new MenuItem(c)));
+        autocompleteMenu.getItems().forEach(m -> m.setOnAction(event1 -> {
+            textArea.appendText(m.getText().replace(autocompleteString.toString(), ""));
+
+        }));
+        autocompleteMenu.show(textArea, 0, 0);
     }
 
     private void initializeMenuBar(){
