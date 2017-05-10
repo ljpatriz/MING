@@ -19,6 +19,7 @@ import javafx.scene.control.*;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
+import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import java.io.IOException;
 import java.io.OutputStream;
@@ -142,7 +143,7 @@ public class View {
         });
 
         this.textArea.setOnMouseClicked(event -> autocompleteMenu.hide());
-
+        this.textArea.setFont(new Font("Courier",12));
         this.printArea = new TextArea();
         this.printArea.setEditable(false);
         this.printArea.setPrefSize(500,200);
@@ -242,7 +243,7 @@ public class View {
         menuForwardLabel.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                mainController.handleStep();
+                mainController.handleForward();
             }
         });
         menuForward.setGraphic(menuForwardLabel);

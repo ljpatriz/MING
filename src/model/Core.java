@@ -208,7 +208,7 @@ public class Core {
      * @return
      */
     public int getPC() {
-        return 4*programCounter.getValue();
+        return programCounter.getValue();
     }
 
     public int getLoValue() {
@@ -240,6 +240,23 @@ public class Core {
         return this.registers.stream()
                 .map(r -> r.getValue())
                 .collect(Collectors.toList());
+    }
+
+    public void executeCommand(){
+        this.commandList.get(this.getPC()).apply();
+        incrementPC();
+    }
+
+    public void incrementPC(){
+        this.programCounter.setValue(getPC()+1);
+    }
+
+    public void decrementPC(){
+        this.programCounter.setValue(getPC()-1);
+    }
+
+    public boolean canExecute(){
+        return getPC() < this.commandList.size();
     }
 
     public void load(Core core){

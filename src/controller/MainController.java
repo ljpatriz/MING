@@ -16,7 +16,8 @@ import model.Core;
 import org.antlr.runtime.CharStream;
 import org.antlr.v4.runtime.CharStreams;
 import view.View;
-
+import view.ViewTools;
+import java.awt.*;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -32,6 +33,7 @@ import java.util.Scanner;
 public class MainController {
 
     private View view;
+    private ViewTools viewTools;
     private Stage primaryStage;
     private ModelController modelController;
     boolean hasAssembled;
@@ -47,8 +49,8 @@ public class MainController {
         this.primaryStage = primaryStage;
         this.modelController = new ModelController();
         view = new View();
+        viewTools = new ViewTools();
         view.start(this.primaryStage,this);
-
         this.setOutputs();
 
     }
@@ -113,39 +115,52 @@ public class MainController {
      * Handles a run request. This is received from the view.
      */
     public void handleRun(){
-        modelController.assemble(view.getUserText());
-        while (modelController.canForward()) {
-            modelController.forward();
-            view.updateRegisters(modelController.getRegisterValues());
-            System.out.println("did a command");
+        try {
+            modelController.assemble(view.getUserText());
+            while (modelController.canForward()) {
+                this.handleStep();
+                Thread.sleep(view.getSliderValue() * 3);
+            }
         }
-        view.updateRegisters(modelController.getRegisterValues());
+        catch(InterruptedException e){
+            viewTools.alertWindow(e);
+        }
+        catch(Exception e){
+            viewTools.alertWindow("Error during parsing",e);
+        }
     }
 
     /**
-     * Handles a step request. This is received from the view.
+     * Handles a request to move forward
      */
-    public void handleStep(){
+    public void handleForward(){
         if(!hasAssembled){
-            System.out.println("reassembling");
             try {
                 modelController.assemble(view.getUserText());
             }
             catch(Exception e){
-
+                viewTools.alertWindow("Problem With Assembling", e);
             }
             this.hasAssembled = true;
         }
         if(modelController.canForward()) {
-            modelController.forward();
-            view.updateRegisters(modelController.getRegisterValues());
-            System.out.println("did a command");
+            this.handleStep();
         }
-
+        else{
+            viewTools.beep();
+        }
     }
 
+    /**
+     * Steps the program forward by one and updates the view
+     */
+    public void handleStep(){
+        modelController.forward();
+        this.updateView();
+    }
+
+
     public void handleChange(){
-        System.out.println("changing");
         this.hasAssembled = false;
     }
 
@@ -154,10 +169,11 @@ public class MainController {
      * Handles an undo request. This is received from the view.
      */
     public void handleUndo(){
-        System.out.println("backward");
         if(modelController.canBackward()){
             modelController.backward();
-            view.updateRegisters(modelController.getRegisterValues());
+            this.updateView();
+        } else{
+            viewTools.beep();
         }
     }
 
@@ -179,4 +195,8 @@ public class MainController {
         alert.showAndWait();
     }
 
+    private void updateView(){
+        view.updateRegisters(modelController.getRegisterValues());
+        view.updateProgramCounter(modelController.getPC());
+    }
 }
