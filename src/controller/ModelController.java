@@ -8,6 +8,8 @@
 package controller;
 
 import model.Core;
+import model.MementoManager;
+import model.Register;
 import model.commands.Command;
 import model.reading.MipsCommandListener;
 import model.reading.MipsLexer;
@@ -30,7 +32,9 @@ public class ModelController {
     MipsLexer mipsLexer;
     Core core;
     MipsParser mipsParser;
-    List<Command> commands;
+
+    private MementoManager<Core> mementoManager;
+    ListIterator<Command> iterator;
 
     /**
      * Simple constructor, creates the core.
@@ -62,7 +66,8 @@ public class ModelController {
         ParseTreeWalker walker = new ParseTreeWalker();
         walker.walk(listener, programContext);
         core.resetRegisters();
-        commands = core.getCommandList();
+        this.mementoManager = new MementoManager<>(core::clone, core::load);
+        iterator = core.getCommandList().listIterator();
     }
 
     /**

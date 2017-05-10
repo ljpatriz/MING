@@ -107,6 +107,7 @@ public class View {
         this.textArea.setPrefSize(700,500);
         this.textArea.setOnKeyPressed(event -> {
             autocompleteMenu.hide();
+            mainController.handleChange();
             if (event.getCode().isLetterKey()) {
                 autocompleteString.append(event.getText());
 //                System.out.println(autocompleteString);
