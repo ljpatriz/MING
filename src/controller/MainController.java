@@ -2,7 +2,9 @@ package controller;
 
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import model.MementoManager;
 import model.commands.Command;
+import model.Core;
 import org.antlr.runtime.CharStream;
 import org.antlr.v4.runtime.CharStreams;
 import view.View;
@@ -22,11 +24,14 @@ public class MainController {
     private View view;
     private Stage primaryStage;
     private ModelController modelController;
+    private MementoManager<Core> mementoManager;
+    Iterator<Command> iterator;
 
     public void start(Stage primaryStage) throws Exception {
         this.primaryStage = primaryStage;
         this.modelController = new ModelController();
         view = new View();
+        mementoManager = new MementoManager<>(modelController.core::clone, modelController.core::load);
         view.start(this.primaryStage,this);
 
         this.setOutputs();
@@ -82,13 +87,34 @@ public class MainController {
 
     public void handleRun(){
         modelController.assemble(view.getUserText());
-        Iterator<Command> it = modelController.getCommandIterator();
+        this.iterator = modelController.getCommandIterator();
 
-        while (it.hasNext()) {
-            Command command = it.next();
+        while (iterator.hasNext()) {
+            Command command = iterator.next();
+            mementoManager.saveState();
             command.apply();
             view.updateRegisters(modelController.getRegisterValues());
             System.out.println("did a command");
         }
     }
+
+    public void handleIncrementalRun(){
+        modelController.assemble(view.getUserText());
+        this.iterator = modelController.getCommandIterator();
+    }
+
+    public void handleStep(){
+        Command command = iterator.next();
+        mementoManager.saveState();
+        command.apply();
+        view.updateRegisters(modelController.getRegisterValues());
+        System.out.println("did a command");
+    }
+
+
+
+    public void handleUndo(){
+        mementoManager.rewind();
+    }
+
 }

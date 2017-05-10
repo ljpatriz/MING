@@ -35,5 +35,7 @@ public class Register {
         return this.value;
     }
 
-
+    public Register clone(){
+        return new Register(registerName, value, modifiable);
+    }
 }

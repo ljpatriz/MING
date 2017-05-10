@@ -224,4 +224,34 @@ public class Core {
                 .map(r -> r.getValue())
                 .collect(Collectors.toList());
     }
+
+    public void load(Core core){
+        for(int i = 0; i < core.registers.size(); i++){
+            this.registers.get(i).setValue(core.registers.get(i).getValue());
+        }
+        for(int i = 0; i < this.memory.size(); i++){
+            this.memory.set(i, core.memory.get(i));
+        }
+        this.programCounter = core.programCounter;
+        this.lo = lo.clone();
+        this.hi = hi.clone();
+        this.commandList = core.commandList;
+    }
+
+    public Core clone(){
+        Core coreClone = new Core();
+        coreClone.registers = new ArrayList<>();
+        coreClone.memory = new ArrayList<>();
+        coreClone.commandList = this.commandList;
+        for(Register r:registers){
+            coreClone.registers.add(r.clone());
+        }
+        for(Integer i : memory){
+            coreClone.memory.add(i);
+        }
+        coreClone.programCounter = this.programCounter;
+        coreClone.lo = lo.clone();
+        coreClone.hi = hi.clone();
+        return coreClone;
+    }
 }

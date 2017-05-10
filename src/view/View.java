@@ -119,6 +119,17 @@ public class View {
         });
         menuFile.getItems().addAll(save,load);
 
+        //undo
+        MenuItem undo = new MenuItem("Undo");
+        load.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                System.out.println("Undo");
+                mainController.handleUndo();
+            }
+        });
+        menuFile.getItems().addAll(undo);
+
         //----Run Program----
         Menu menuRun = new Menu();
         Label menuRunLabel = new Label("Run");

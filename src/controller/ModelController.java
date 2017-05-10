@@ -24,12 +24,14 @@ public class ModelController {
     MipsParser mipsParser;
     List<Command> commands;
 
+    public ModelController(){
+        core = new Core();
+    }
     public void assemble(String input) {
         this.assemble(CharStreams.fromString(input));
     }
 
     public void assemble(CharStream stream) {
-        core = new Core();
         mipsLexer = new MipsLexer(stream);
         TokenStream tokenStream = new CommonTokenStream(mipsLexer);
         mipsParser = new MipsParser(tokenStream);
