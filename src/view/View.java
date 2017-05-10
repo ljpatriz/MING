@@ -7,6 +7,7 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
@@ -15,6 +16,7 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 //// TODO: 4/25/2017 fix resizing of window so that the text area resizes and console doesnt
@@ -40,7 +42,7 @@ public class View {
     private OutputStream outputStream;
 
     private StringBuilder autocompleteString;
-
+    private ContextMenu autocompleteMenu;
 
 
     public void start(Stage primaryStage, MainController mainController) throws Exception{
@@ -48,7 +50,10 @@ public class View {
         this.primaryStage.setTitle("MING");
         this.registerLabels = new ArrayList<>();
         this.mainController = mainController;
-        autocompleteString = new StringBuilder();
+        this.autocompleteString = new StringBuilder();
+        this.autocompleteMenu = new ContextMenu();
+
+
         initializeMenuBar();
         initializeTextIO();
         initializeRegisterPane();
@@ -74,14 +79,41 @@ public class View {
         this.textArea = new TextArea();
         this.textArea.setPrefSize(700,500);
         this.textArea.setOnKeyPressed(event -> {
+            autocompleteMenu.hide();
             if (event.getCode().isLetterKey()) {
                 autocompleteString.append(event.getText());
-                System.out.println(autocompleteString);
+//                System.out.println(autocompleteString);
+//                System.out.println(textArea.getCaretPosition());
+                this.autocompleteWindow();
+
+
+                autocompleteMenu.getItems().clear();
+                List<String> commands = Arrays.asList("add","addi","addiu","addu","and","andi",
+                        "beq","bgez","bgtz","blez","bltz","bne"	,"break","clo"	,"clz"	,"div"	,"divu",
+                        "j"	,"jal"	,"jalr","jr"	,"lb"	,"lbu"	,"lh"	,"lhu"	,"li","lw"	,"mfhi",
+                        "mflo","move","movn","movz","mul","mult","nop","nor","or","sb","sub","subu",
+                        "sw","syscall","xor","xori","ori");
+                commands.stream()
+                        .filter(c -> c.startsWith(autocompleteString.toString()))
+                        .forEach(c -> autocompleteMenu.getItems().add(new MenuItem(c)));
+                autocompleteMenu.getItems().forEach(m -> m.setOnAction(event1 -> {
+                    textArea.appendText(m.getText().replace(autocompleteString.toString(), ""));
+
+                }));
+                autocompleteMenu.show(textArea, 0, 0);
+                //autocompleteMenu.
+
+
+
+            } else if (event.getCode().equals(KeyCode.DELETE)) {
+                autocompleteString.setLength(autocompleteString.length()-1);
             } else {
                 autocompleteString.setLength(0);
             }
 
         });
+
+        this.textArea.setOnMouseClicked(event -> autocompleteMenu.hide());
 
         this.printArea = new TextArea();
         this.printArea.setEditable(false);
@@ -92,6 +124,9 @@ public class View {
                 View.this.printArea.appendText(String.valueOf((char) b));
             }
         };
+    }
+
+    private void autocompleteWindow(){
     }
 
     private void initializeMenuBar(){
