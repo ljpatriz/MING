@@ -39,6 +39,7 @@ public class ModelController {
         ParseTreeListener listener = new MipsCommandListener(core);
         ParseTreeWalker walker = new ParseTreeWalker();
         walker.walk(listener, programContext);
+        core.resetRegisters();
         commands = core.getCommandList();
     }
 

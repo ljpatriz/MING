@@ -93,9 +93,8 @@ public class MainController {
             Command command = iterator.next();
             mementoManager.saveState();
             command.apply();
-            view.updateRegisters(modelController.getRegisterValues());
-            System.out.println("did a command");
         }
+        view.updateRegisters(modelController.getRegisterValues());
     }
 
     public void handleStep(){
@@ -104,18 +103,24 @@ public class MainController {
             this.iterator = modelController.getCommandIterator();
             this.hasAssembled = true;
         }
-        Command command = iterator.next();
-        mementoManager.saveState();
-        command.apply();
-        view.updateRegisters(modelController.getRegisterValues());
-        System.out.println("did a command");
+        if (iterator.hasNext()) {
+            Command command = iterator.next();
+            mementoManager.saveState();
+            command.apply();
+            view.updateRegisters(modelController.getRegisterValues());
+        } else {
+            this.hasAssembled = false;
+        }
     }
 
 
 
     public void handleUndo(){
-        mementoManager.rewind();
-        view.updateRegisters(modelController.getRegisterValues());
+        if (mementoManager.rewindProperty().get()) {
+
+            mementoManager.rewind();
+            view.updateRegisters(modelController.getRegisterValues());
+        }
     }
 
 }

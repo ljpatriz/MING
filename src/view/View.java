@@ -92,7 +92,9 @@ public class View {
 
 
 
-            } else if (event.getCode().equals(KeyCode.BACK_SPACE)) {
+            } else if (event.getCode().equals(KeyCode.BACK_SPACE) &&
+                    autocompleteString.length() > 0) {
+
                 autocompleteString.setLength(autocompleteString.length()-1);
                 this.autocompleteWindow();
             } else {
@@ -258,6 +260,9 @@ public class View {
         //ra register
         initializeRegister("$ra");
 
+//        initializeRegister("hi");
+//        initializeRegister("lo");
+
     }
 
     private void makeRegisters(String letter, int numRegisters){
@@ -267,7 +272,7 @@ public class View {
     }
 
     private void initializeRegister(String name){
-        registers.add(new Label(name),0,this.currentRegisterNumber+1);
+        this.registers.add(new Label(name),0,this.currentRegisterNumber+1);
         this.registers.add(new Label(String.valueOf(this.currentRegisterNumber)),1,this.currentRegisterNumber+1);
         this.currentRegisterNumber+=1;
 
@@ -285,7 +290,8 @@ public class View {
 
     public void updateRegisters(List<Integer> newValues) {
         for (int i = 0; i < newValues.size(); i++) {
-            this.registerLabels.get(i).setText("0x"+Integer.toHexString(newValues.get(i)));
+            this.registerLabels.get(i)
+                    .setText("0x"+Integer.toHexString(newValues.get(i)));
 
         }
     }

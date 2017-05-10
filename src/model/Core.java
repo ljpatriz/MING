@@ -93,6 +93,17 @@ public class Core {
     }
 
     /**
+     * Resets all registers to 0
+     */
+    public void resetRegisters() {
+        this.programCounter.setValue(0);
+        this.lo.setValue(0);
+        this.hi.setValue(0);
+        this.registers.forEach(r -> r.setValue(0));
+
+    }
+
+    /**
      * This function returns the list of commands in the program
      * @return
      */

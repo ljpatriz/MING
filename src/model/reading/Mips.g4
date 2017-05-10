@@ -133,5 +133,5 @@ ORI		: 'ori'		;
 WS :[, \t\r\n]+->skip;
 LPAREN		: '(' ;
 RPAREN		: ')' ;
-LABEL	: .+?':' ;
+LABEL	: [.]+?':' ;
 
