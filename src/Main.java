@@ -23,8 +23,6 @@ public class Main extends Application {
     public void start(Stage primaryStage) throws Exception{
         MainController mainController = new MainController();
         mainController.start(primaryStage);
-    //enter the text file to run
-        //run the text file
         CharStream stream = CharStreams.fromFileName(testDirectory+"addi.asm");
         ModelController modelController = new ModelController();
         modelController.assemble(stream);

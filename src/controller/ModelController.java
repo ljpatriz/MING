@@ -1,7 +1,13 @@
+/**
+ * FileName: ModelController.java
+ * Project: CS 461 Final Project
+ * Date: Wednesday, May 10, 2017
+ * Authors: Jake Adamson, Nick Cameron, Larry Patrizio
+ */
+
 package controller;
 
 import model.Core;
-import model.Register;
 import model.commands.Command;
 import model.reading.MipsCommandListener;
 import model.reading.MipsLexer;
@@ -16,7 +22,9 @@ import org.antlr.v4.runtime.tree.ParseTreeWalker;
 import java.util.*;
 
 /**
- * Created by larrypatrizio on 4/25/17.
+ * This class is responsible for being a controller between the MainController and the
+ * Model. This code is critical for it protects access to the parser, lexer, core, and
+ * commands.
  */
 public class ModelController {
     MipsLexer mipsLexer;
@@ -24,13 +32,27 @@ public class ModelController {
     MipsParser mipsParser;
     List<Command> commands;
 
+    /**
+     * Simple constructor, creates the core.
+     */
     public ModelController(){
         core = new Core();
     }
+
+    /**
+     * Receives a string (not preferred source) representing the .asm file received from
+     * the UI.
+     * @param input - String (from the .asm file)
+     */
     public void assemble(String input) {
         this.assemble(CharStreams.fromString(input));
     }
 
+    /**
+     * Receives a CharStream (the preferred source) representing the .asm file receieved
+     * from the UI.
+     * @param stream - CharStream (from the .asm file)
+     */
     public void assemble(CharStream stream) {
         mipsLexer = new MipsLexer(stream);
         TokenStream tokenStream = new CommonTokenStream(mipsLexer);
@@ -43,22 +65,20 @@ public class ModelController {
         commands = core.getCommandList();
     }
 
-//    public void run(CharStream stream){
-////        System.out.println(core.getCommandList());
-//        core.runCommands();
-//    }
-
-    public void forward() {
-
-    }
-
+    /**
+     * Returns the command iterator.
+     * @return - command iterator
+     */
     public Iterator<Command> getCommandIterator() {
         return commands.iterator();
     }
 
+    /**
+     * Returns the values associated with the registers from the core.
+     * @return - List<Integer>
+     */
     public List<Integer> getRegisterValues() {
         return core.getRegisterValues();
     }
-
 
 }

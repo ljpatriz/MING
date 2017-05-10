@@ -1,3 +1,10 @@
+/**
+ * FileName: View.java
+ * Project: CS 461 Final Project
+ * Date: Wednesday, May 10, 2017
+ * Authors: Jake Adamson, Nick Cameron, Larry Patrizio
+ */
+
 package view;
 
 import controller.MainController;
@@ -8,25 +15,21 @@ import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.input.KeyCode;
-import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
-
 import java.io.IOException;
 import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-//// TODO: 4/25/2017 fix resizing of window so that the text area resizes and console doesnt
-//// TODO: 4/25/2017 allow user resizing of components
-//// TODO: 4/25/2017 use fxml for layout stuff
-//// TODO: 4/25/2017 have option for user to view registers in base 10
-//// TODO: 4/25/2017 consider a (still bland but slightly) less bland color scheme
-//// TODO: 4/25/2017 menu bar -> file -> save, open, quit (Larry - done, but need to fix interactions)
-//// TODO: 4/25/2017 finish the application instead of writing so many todos
 
+/**
+ * This class is responsible for maintaining the visual components of the program. Also
+ * it manages any user interaction and communicates with the MainController to properly
+ * handle these user requests.
+ */
 public class View {
 
     private GridPane registers;
@@ -44,7 +47,17 @@ public class View {
     private StringBuilder autocompleteString;
     private ContextMenu autocompleteMenu;
 
+    private Slider slider;
+    private Label sliderLabel;
 
+
+    /**
+     * Starts the window/U.I. portion of the project. Takes in a primaryStage and the
+     * MainController
+     * @param primaryStage - primaryStage
+     * @param mainController - mainController
+     * @throws Exception
+     */
     public void start(Stage primaryStage, MainController mainController) throws Exception{
         this.primaryStage = primaryStage;
         this.primaryStage.setTitle("MING");
@@ -62,11 +75,25 @@ public class View {
         primaryStage.show();
     }
 
+    /**
+     * Properly organizes the User Interface Pane
+     */
     private void organizeUIPane(){
+        this.slider = new Slider();
+        this.sliderLabel = new Label("Program Slow-Down: 0");
+        this.slider.valueProperty().addListener(new ChangeListener<Number>() {
+            @Override
+            public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
+                sliderLabel.setText("Program Slow-Down: " + String.valueOf(newValue.intValue()));
+            }
+        });
+
         this.masterGridPane = new GridPane();
         this.masterGridPane.add(textArea,0,0);
         this.masterGridPane.add(this.registers,1,0);
         this.masterGridPane.add(this.printArea,0,2);
+        this.masterGridPane.add(this.slider,1,2);
+        this.masterGridPane.add(this.sliderLabel,1,1);
         this.scene = new Scene(new VBox(), 1200, 1000);
         ((VBox) this.scene.getRoot()).getChildren().addAll(this.menuBar,this.masterGridPane);
         //apply CSS Styling
@@ -143,7 +170,6 @@ public class View {
         save.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                System.out.println("Save");
                 mainController.handleSave();
             }
         });
@@ -152,7 +178,6 @@ public class View {
         load.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                System.out.println("Load");
                 mainController.handleLoad();
             }
         });
@@ -163,7 +188,6 @@ public class View {
         load.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                System.out.println("Undo");
                 mainController.handleUndo();
             }
         });
@@ -214,9 +238,20 @@ public class View {
         });
         menuQuit.setGraphic(menuQuitLabel);
 
+        //----Info----
+        Menu menuInfo = new Menu();
+        Label menuInfoLabel = new Label("Info");
+        menuInfoLabel.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                mainController.handleInfo();
+            }
+        });
+        menuInfo.setGraphic(menuInfoLabel);
+
 
         //add menus to menuBar
-        this.menuBar.getMenus().addAll(menuFile,menuRun,menuBack,menuForward,menuQuit);
+        this.menuBar.getMenus().addAll(menuFile,menuInfo,menuRun,menuBack,menuForward,menuQuit);
     }
 
     private void initializeRegisterPane(){
@@ -296,7 +331,9 @@ public class View {
         }
     }
 
-
+    public int getSliderValue(){
+        return (int) this.slider.getValue();
+    }
     public OutputStream getOutputStream() {
         return outputStream;
     }
