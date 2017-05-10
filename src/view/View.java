@@ -102,6 +102,9 @@ public class View {
         this.masterGridPane.getStyleClass().add("grid");
     }
 
+    /**
+     * Initializes the text area to properly handle User Interaction
+     */
     private void initializeTextIO(){
         this.textArea = new TextArea();
         this.textArea.setPrefSize(700,500);
@@ -144,6 +147,9 @@ public class View {
         };
     }
 
+    /**
+     *
+     */
     private void autocompleteWindow(){
         autocompleteMenu.getItems().clear();
         List<String> commands = Arrays.asList("add","addi","addiu","addu","and","andi",
@@ -295,10 +301,6 @@ public class View {
 
         //ra register
         initializeRegister("$ra");
-
-//        initializeRegister("hi");
-//        initializeRegister("lo");
-
     }
 
     private void makeRegisters(String letter, int numRegisters){
