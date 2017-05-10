@@ -141,6 +141,28 @@ public class View {
         });
         menuRun.setGraphic(menuRunLabel);
 
+        //----Back Step Program----
+        Menu menuBack = new Menu();
+        Label menuBackLabel = new Label("Back Step");
+        menuBackLabel.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                mainController.handleUndo();
+            }
+        });
+        menuBack.setGraphic(menuBackLabel);
+
+        //----Forward Step Program----
+        Menu menuForward = new Menu();
+        Label menuForwardLabel = new Label("Forward Step");
+        menuForwardLabel.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                mainController.handleStep();
+            }
+        });
+        menuForward.setGraphic(menuForwardLabel);
+
         //----Quit----
         Menu menuQuit = new Menu();
         Label menuQuitLabel = new Label("Quit");
@@ -155,7 +177,7 @@ public class View {
 
 
         //add menus to menuBar
-        this.menuBar.getMenus().addAll(menuFile,menuRun,menuQuit);
+        this.menuBar.getMenus().addAll(menuFile,menuRun,menuBack,menuForward,menuQuit);
     }
 
     private void initializeRegisterPane(){
