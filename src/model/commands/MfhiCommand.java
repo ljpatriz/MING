@@ -1,11 +1,14 @@
+/**
+ * FileName: MfhiCommand.java
+ * Project: CS 461 Final Project
+ * Date: Wednesday, May 10, 2017
+ * Authors: Jake Adamson, Nick Cameron, Larry Patrizio
+ */
 package model.commands;
 
 import model.Core;
 import model.Register;
 
-/**
- * Created by larrypatrizio on 4/30/17.
- */
 public class MfhiCommand extends Command {
     Register dst;
 

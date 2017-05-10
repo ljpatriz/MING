@@ -1,3 +1,9 @@
+/**
+ * FileName: MementoManager.java
+ * Project: CS 461 Final Project
+ * Date: Wednesday, May 10, 2017
+ * Authors: Jake Adamson, Nick Cameron, Larry Patrizio
+ */
 package model;
 
 import javafx.beans.property.ReadOnlyBooleanProperty;

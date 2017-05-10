@@ -1,11 +1,13 @@
+/**
+ * FileName: SysCallCommand.java
+ * Project: CS 461 Final Project
+ * Date: Wednesday, May 10, 2017
+ * Authors: Jake Adamson, Nick Cameron, Larry Patrizio
+ */
 package model.commands;
 
 import model.Core;
-import model.Register;
 
-/**
- * Created by ncameron on 4/27/2017.
- */
 public class SyscallCommand extends Command {
     public SyscallCommand(Core core) {
         super(core);
@@ -14,11 +16,9 @@ public class SyscallCommand extends Command {
         int v0RegisterValue = core.getRegister("$v0").getValue();
         switch(v0RegisterValue){
             case 1:
-                //TODO: Larry - eventually connect this to the UI
                 System.out.println(core.getRegister("$a0").getValue());
 
             case 5:
-                //TODO: Larry - eventually connect this to the UI
                 System.out.println("Enter an integer: ");
                 int userInt = Integer.valueOf(System.console().readLine());
                 core.getRegister("$v0").setValue(userInt);

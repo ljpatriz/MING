@@ -1,3 +1,9 @@
+/**
+ * FileName: LiCommand.java
+ * Project: CS 461 Final Project
+ * Date: Wednesday, May 10, 2017
+ * Authors: Jake Adamson, Nick Cameron, Larry Patrizio
+ */
 package model.commands;
 
 import model.Core;
@@ -5,9 +11,6 @@ import model.Core;
 import java.util.function.Consumer;
 import model.Register;
 
-/**
- * Created by larrypatrizio on 4/25/17.
- */
 public class LiCommand extends Command{
     Register dst;
     int immediate;
