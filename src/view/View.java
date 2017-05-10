@@ -11,7 +11,9 @@ import controller.MainController;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.event.EventHandler;
+import javafx.event.EventType;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.input.KeyCode;
@@ -49,6 +51,7 @@ public class View {
 
     private Slider slider;
     private Label sliderLabel;
+    private Label pcLabel;
 
 
     /**
@@ -66,7 +69,7 @@ public class View {
         this.autocompleteString = new StringBuilder();
         this.autocompleteMenu = new ContextMenu();
 
-
+        initializeInfoComponents();
         initializeMenuBar();
         initializeTextIO();
         initializeRegisterPane();
@@ -75,10 +78,7 @@ public class View {
         primaryStage.show();
     }
 
-    /**
-     * Properly organizes the User Interface Pane
-     */
-    private void organizeUIPane(){
+    private void initializeInfoComponents(){
         this.slider = new Slider();
         this.sliderLabel = new Label("Program Slow-Down: 0");
         this.slider.valueProperty().addListener(new ChangeListener<Number>() {
@@ -87,6 +87,13 @@ public class View {
                 sliderLabel.setText("Program Slow-Down: " + String.valueOf(newValue.intValue()));
             }
         });
+        this.pcLabel = new Label("Program Counter Value: 0");
+    }
+    /**
+     * Properly organizes the User Interface Pane
+     */
+    private void organizeUIPane(){
+
 
         this.masterGridPane = new GridPane();
         this.masterGridPane.add(textArea,0,0);
@@ -148,7 +155,7 @@ public class View {
     }
 
     /**
-     *
+     * Properly steps up and maintains the auto complete dialogue window
      */
     private void autocompleteWindow(){
         autocompleteMenu.getItems().clear();
@@ -167,6 +174,9 @@ public class View {
         autocompleteMenu.show(textArea, 0, 0);
     }
 
+    /**
+     * Initializes the menuBar
+     */
     private void initializeMenuBar(){
         this.menuBar = new MenuBar();
 
@@ -210,6 +220,10 @@ public class View {
             }
         });
         menuRun.setGraphic(menuRunLabel);
+
+        //----PC Label----
+        Menu menuPC = new Menu();
+        menuPC.setGraphic(this.pcLabel);
 
         //----Back Step Program----
         Menu menuBack = new Menu();
@@ -258,9 +272,12 @@ public class View {
 
 
         //add menus to menuBar
-        this.menuBar.getMenus().addAll(menuFile,menuInfo,menuRun,menuBack,menuForward,menuQuit);
+        this.menuBar.getMenus().addAll(menuFile,menuInfo,menuRun,menuPC,menuBack,menuForward,menuQuit);
     }
 
+    /**
+     * Initialies the register pane
+     */
     private void initializeRegisterPane(){
         this.registers = new GridPane();
 
@@ -303,12 +320,22 @@ public class View {
         initializeRegister("$ra");
     }
 
+    /**
+     * Makes the visual components of the registers. If given a and 3, it will add the
+     * registers $a0, $a1, and $a2.
+     * @param letter - letter of register
+     * @param numRegisters - number of registers to make
+     */
     private void makeRegisters(String letter, int numRegisters){
         for(int i = 0; i < numRegisters; i++){
             initializeRegister(letter+String.valueOf(i));
         }
     }
 
+    /**
+     * Initializes a given register
+     * @param name - register name
+     */
     private void initializeRegister(String name){
         this.registers.add(new Label(name),0,this.currentRegisterNumber+1);
         this.registers.add(new Label(String.valueOf(this.currentRegisterNumber)),1,this.currentRegisterNumber+1);
@@ -320,12 +347,24 @@ public class View {
         registers.add(label, 2, this.currentRegisterNumber);
     }
 
+    /**
+     * returns the textArea
+     * @return - TextArea
+     */
     public TextArea getTextArea(){return this.textArea;}
 
+    /**
+     * returns the user generated text within the textArea
+     * @return - String from textArea
+     */
     public String getUserText() {
         return this.textArea.getText();
     }
 
+    /**
+     * Updates the visual registers with new values
+     * @param newValues - List of integers
+     */
     public void updateRegisters(List<Integer> newValues) {
         for (int i = 0; i < newValues.size(); i++) {
             this.registerLabels.get(i)
@@ -334,12 +373,23 @@ public class View {
         }
     }
 
+    /**
+     * returns the current value of the slider (as an integer)
+     * @return - int slider value
+     */
     public int getSliderValue(){
         return (int) this.slider.getValue();
     }
+
+    /**
+     * returns the OutputStream
+     * @return -OutputStream
+     */
     public OutputStream getOutputStream() {
         return outputStream;
     }
 
-
+    public void updateProgramCounter(int newValue){
+        this.pcLabel.setText("Program Counter Value: "+ newValue);
+    }
 }
