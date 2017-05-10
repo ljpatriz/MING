@@ -26,7 +26,7 @@ public class MainController {
     private ModelController modelController;
     private MementoManager<Core> mementoManager;
     Iterator<Command> iterator;
-
+    boolean hasAssembled;
     public void start(Stage primaryStage) throws Exception {
         this.primaryStage = primaryStage;
         this.modelController = new ModelController();
@@ -98,12 +98,12 @@ public class MainController {
         }
     }
 
-    public void handleIncrementalRun(){
-        modelController.assemble(view.getUserText());
-        this.iterator = modelController.getCommandIterator();
-    }
-
     public void handleStep(){
+        if(!hasAssembled){
+            modelController.assemble(view.getUserText());
+            this.iterator = modelController.getCommandIterator();
+            this.hasAssembled = true;
+        }
         Command command = iterator.next();
         mementoManager.saveState();
         command.apply();
