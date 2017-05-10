@@ -232,6 +232,7 @@ public class Core {
      * @param commandList
      */
     public void setCommandList(List<Command> commandList) {
+        System.out.println("Command List Size:"+commandList.size());
         this.commandList = commandList;
     }
 

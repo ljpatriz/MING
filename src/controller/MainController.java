@@ -115,19 +115,25 @@ public class MainController {
      * Handles a run request. This is received from the view.
      */
     public void handleRun(){
-        try {
-            modelController.assemble(view.getUserText());
-            while (modelController.canForward()) {
-                this.handleStep();
-                Thread.sleep(view.getSliderValue() * 3);
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    modelController.assemble(view.getUserText());
+                    while (modelController.canForward()) {
+                        handleStep();
+                        Thread.sleep(view.getSliderValue() * 100);
+                    }
+                } catch (
+                        InterruptedException e)
+                {
+                    viewTools.alertWindow(e);
+                } catch (Exception e)
+                {
+                    viewTools.alertWindow("Error during parsing", e);
+                }
             }
-        }
-        catch(InterruptedException e){
-            viewTools.alertWindow(e);
-        }
-        catch(Exception e){
-            viewTools.alertWindow("Error during parsing",e);
-        }
+        }).run();
     }
 
     /**
@@ -196,7 +202,9 @@ public class MainController {
     }
 
     private void updateView(){
+        System.out.println("updating view");
         view.updateRegisters(modelController.getRegisterValues());
         view.updateProgramCounter(modelController.getPC());
+        view.showPrimaryStage();
     }
 }

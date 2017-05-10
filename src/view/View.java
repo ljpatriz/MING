@@ -393,4 +393,6 @@ public class View {
     public void updateProgramCounter(int newValue){
         this.pcLabel.setText("Program Counter Value: "+ newValue);
     }
+
+    public void showPrimaryStage(){this.primaryStage.show();}
 }
