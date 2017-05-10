@@ -29,12 +29,12 @@ import java.util.*;
  * commands.
  */
 public class ModelController {
-    MipsLexer mipsLexer;
-    Core core;
-    MipsParser mipsParser;
+    private MipsLexer mipsLexer;
+    private Core core;
+    private MipsParser mipsParser;
 
     private MementoManager<Core> mementoManager;
-    ListIterator<Command> iterator;
+    private ListIterator<Command> iterator;
 
     /**
      * Simple constructor, creates the core.
@@ -70,14 +70,28 @@ public class ModelController {
         iterator = core.getCommandList().listIterator();
     }
 
-    /**
-     * Returns the command iterator.
-     * @return - command iterator
-     */
-    public Iterator<Command> getCommandIterator() {
-        return commands.iterator();
+    public void forward() {
+        Command command = iterator.next();
+        mementoManager.saveState();
+        command.apply();
     }
 
+    public void backward(){
+        mementoManager.rewind();
+        iterator.previous();
+    }
+
+    public boolean canForward(){
+        return iterator.hasNext();
+    }
+
+    public boolean canBackward(){
+        return mementoManager.rewindProperty().getValue();
+    }
+
+    public int getPC(){
+        return this.core.getPC();
+    }
     /**
      * Returns the values associated with the registers from the core.
      * @return - List<Integer>
