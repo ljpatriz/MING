@@ -2,18 +2,12 @@ package controller;
 
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
-import model.MementoManager;
-import model.commands.Command;
-import model.Core;
-import org.antlr.runtime.CharStream;
-import org.antlr.v4.runtime.CharStreams;
 import view.View;
 
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintStream;
-import java.util.Iterator;
 import java.util.Scanner;
 
 /**
@@ -24,14 +18,12 @@ public class MainController {
     private View view;
     private Stage primaryStage;
     private ModelController modelController;
-    private MementoManager<Core> mementoManager;
-    Iterator<Command> iterator;
     boolean hasAssembled;
+
     public void start(Stage primaryStage) throws Exception {
         this.primaryStage = primaryStage;
         this.modelController = new ModelController();
         view = new View();
-        mementoManager = new MementoManager<>(modelController.core::clone, modelController.core::load);
         view.start(this.primaryStage,this);
 
         this.setOutputs();
@@ -41,8 +33,8 @@ public class MainController {
 
     public void setOutputs() {
         PrintStream out = new PrintStream(this.view.getOutputStream(), true);
-        System.setOut(out);
-        System.setErr(out);
+        //System.setOut(out);
+        //System.setErr(out);
     }
 
     public void handleSave(){
@@ -87,12 +79,8 @@ public class MainController {
 
     public void handleRun(){
         modelController.assemble(view.getUserText());
-        this.iterator = modelController.getCommandIterator();
-
-        while (iterator.hasNext()) {
-            Command command = iterator.next();
-            mementoManager.saveState();
-            command.apply();
+        while (modelController.canForward()) {
+            modelController.forward();
             view.updateRegisters(modelController.getRegisterValues());
             System.out.println("did a command");
         }
@@ -100,22 +88,35 @@ public class MainController {
 
     public void handleStep(){
         if(!hasAssembled){
-            modelController.assemble(view.getUserText());
-            this.iterator = modelController.getCommandIterator();
+            System.out.println("reassembling");
+            try {
+                modelController.assemble(view.getUserText());
+            }
+            catch(Exception e){
+
+            }
             this.hasAssembled = true;
         }
-        Command command = iterator.next();
-        mementoManager.saveState();
-        command.apply();
-        view.updateRegisters(modelController.getRegisterValues());
-        System.out.println("did a command");
+        if(modelController.canForward()) {
+            modelController.forward();
+            view.updateRegisters(modelController.getRegisterValues());
+            System.out.println("did a command");
+        }
+
     }
 
-
+    public void handleChange(){
+        System.out.println("changing");
+        this.hasAssembled = false;
+    }
 
     public void handleUndo(){
-        mementoManager.rewind();
-        view.updateRegisters(modelController.getRegisterValues());
+        System.out.println("backward");
+        if(modelController.canBackward()){
+            modelController.backward();
+            view.updateRegisters(modelController.getRegisterValues());
+        }
+
     }
 
 }

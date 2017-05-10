@@ -1,6 +1,7 @@
 package controller;
 
 import model.Core;
+import model.MementoManager;
 import model.Register;
 import model.commands.Command;
 import model.reading.MipsCommandListener;
@@ -22,7 +23,9 @@ public class ModelController {
     MipsLexer mipsLexer;
     Core core;
     MipsParser mipsParser;
-    List<Command> commands;
+
+    private MementoManager<Core> mementoManager;
+    ListIterator<Command> iterator;
 
     public ModelController(){
         core = new Core();
@@ -39,7 +42,8 @@ public class ModelController {
         ParseTreeListener listener = new MipsCommandListener(core);
         ParseTreeWalker walker = new ParseTreeWalker();
         walker.walk(listener, programContext);
-        commands = core.getCommandList();
+        this.mementoManager = new MementoManager<>(core::clone, core::load);
+        iterator = core.getCommandList().listIterator();
     }
 
 //    public void run(CharStream stream){
@@ -48,11 +52,23 @@ public class ModelController {
 //    }
 
     public void forward() {
-
+        Command command = iterator.next();
+        mementoManager.saveState();
+        command.apply();
     }
 
-    public Iterator<Command> getCommandIterator() {
-        return commands.iterator();
+    public void backward(){
+        mementoManager.rewind();
+        iterator.previous();
+    }
+
+    public boolean canForward(){
+        return iterator.hasNext();
+    }
+
+    public boolean canBackward(){
+        System.out.println(mementoManager.rewindProperty().getValue());
+        return mementoManager.rewindProperty().getValue();
     }
 
     public List<Integer> getRegisterValues() {
