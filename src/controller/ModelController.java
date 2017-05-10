@@ -30,11 +30,10 @@ import java.util.*;
  */
 public class ModelController {
     private MipsLexer mipsLexer;
-    private Core core;
     private MipsParser mipsParser;
 
+    private Core core;
     private MementoManager<Core> mementoManager;
-    private ListIterator<Command> iterator;
 
     /**
      * Simple constructor, creates the core.
@@ -67,22 +66,20 @@ public class ModelController {
         walker.walk(listener, programContext);
         core.resetRegisters();
         this.mementoManager = new MementoManager<>(core::clone, core::load);
-        iterator = core.getCommandList().listIterator();
     }
 
     public void forward() {
-        Command command = iterator.next();
         mementoManager.saveState();
-        command.apply();
+        core.executeCommand();
     }
 
     public void backward(){
         mementoManager.rewind();
-        iterator.previous();
+        core.decrementPC();
     }
 
     public boolean canForward(){
-        return iterator.hasNext();
+        return core.canExecute();
     }
 
     public boolean canBackward(){
@@ -92,6 +89,7 @@ public class ModelController {
     public int getPC(){
         return this.core.getPC();
     }
+
     /**
      * Returns the values associated with the registers from the core.
      * @return - List<Integer>
