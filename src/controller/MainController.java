@@ -84,6 +84,7 @@ public class MainController {
             view.updateRegisters(modelController.getRegisterValues());
             System.out.println("did a command");
         }
+        view.updateRegisters(modelController.getRegisterValues());
     }
 
     public void handleStep(){
@@ -116,7 +117,5 @@ public class MainController {
             modelController.backward();
             view.updateRegisters(modelController.getRegisterValues());
         }
-
     }
-
 }
