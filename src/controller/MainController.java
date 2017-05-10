@@ -115,6 +115,7 @@ public class MainController {
 
     public void handleUndo(){
         mementoManager.rewind();
+        view.updateRegisters(modelController.getRegisterValues());
     }
 
 }
